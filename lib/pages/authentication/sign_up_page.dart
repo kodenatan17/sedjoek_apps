@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/widgets/buttons.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
 
-import '../theme.dart';
-import '../widgets/agreement_text.dart';
-import '../widgets/header.dart';
+import '../../theme.dart';
+import '../../widgets/agreement_text.dart';
+import '../../widgets/header.dart';
 
-class SignInPage extends StatelessWidget {
+class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,12 +44,17 @@ Widget bodyContainer(BuildContext context) {
       borderRadius: BorderRadius.circular(kDefaultCircular),
     ),
     child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomFormField(
-          title: "Email Address",
+          title: "Name",
+          obscureText: true,
+          hintText: "Your Name",
+          suffixIcon: Icons.people,
+        ),
+        CustomFormField(
+          title: "Email",
           obscureText: false,
-          hintText: "Your Email Address",
+          hintText: "Your Email",
           suffixIcon: Icons.email,
         ),
         CustomFormField(
@@ -58,28 +63,11 @@ Widget bodyContainer(BuildContext context) {
           hintText: "Your Password",
           suffixIcon: Icons.key,
         ),
-        textForgotPassword(),
         CustomFilledButton(
-          title: "Masuk",
+          title: "Daftar",
           onPressed: () {},
         ),
       ],
-    ),
-  );
-}
-
-Widget textForgotPassword() {
-  return Container(
-    alignment: Alignment.centerRight,
-    height: 50,
-    child: TextButton(
-      onPressed: () {},
-      child: Text(
-        "Lupa Kata Sandi ?",
-        style: TextStyle(
-          fontSize: 14,
-        ),
-      ),
     ),
   );
 }
@@ -91,16 +79,16 @@ Widget footerContainer(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          'Tidak punya akun ? ',
+          'Sudah punya akun ? ',
           style: secondaryTextStyle.copyWith(
             fontSize: 12,
             fontWeight: semiBold,
           ),
         ),
         TextButton(
-          onPressed: () => Navigator.pushNamed(context, '/sign-up'),
+          onPressed: () => Navigator.pushNamed(context, '/sign-in'),
           child: Text(
-            'Daftar Sekarang',
+            'Masuk',
             style: primaryTextStyle.copyWith(
               fontSize: 12,
               fontWeight: medium,

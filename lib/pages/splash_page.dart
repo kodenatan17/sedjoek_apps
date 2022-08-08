@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sedjoek_apps/pages/onboarding_page.dart';
 import 'package:sedjoek_apps/theme.dart';
 
 class SplashPage extends StatefulWidget {

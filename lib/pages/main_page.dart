@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../theme.dart';
-import 'chat_page.dart';
-import 'home_page.dart';
-import 'profile_page.dart';
-import 'wishlist_page.dart';
+import 'chat/chat_page.dart';
+import 'home/home_page.dart';
+import 'profile/profile_page.dart';
+import 'wishlist/wishlist_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
         ),
         child: BottomAppBar(
           shape: CircularNotchedRectangle(),
-          notchMargin: 12,
+          notchMargin: 15,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
             currentIndex: currentIndex,
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                   icon: Container(
                     margin: const EdgeInsets.only(
-                      top: kDefaultMargin * 2,
+                      top: kDefaultMargin,
                       bottom: kDefaultMargin,
                     ),
                     child: Image.asset(
@@ -65,7 +65,7 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                    top: kDefaultMargin * 2,
+                    top: kDefaultMargin,
                     bottom: kDefaultMargin,
                   ),
                   child: Image.asset(
@@ -79,7 +79,7 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                    top: kDefaultMargin * 2,
+                    top: kDefaultMargin,
                     bottom: kDefaultMargin,
                   ),
                   child: Image.asset(
@@ -93,7 +93,8 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                    top: kDefaultMargin * 2,
+                    top: kDefaultMargin,
+                    bottom: kDefaultMargin
                   ),
                   child: Image.asset(
                     "assets/icons/icon_profile.png",

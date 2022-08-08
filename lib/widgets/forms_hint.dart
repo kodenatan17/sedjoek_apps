@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
-class CustomFormField extends StatelessWidget {
-  final String? title;
+class CustomFormFieldHint extends StatelessWidget {
   final bool? obscureText;
   final TextEditingController? controller;
-  final IconData? suffixIcon;
   final String hintText;
-  const CustomFormField({
+  const CustomFormFieldHint({
     Key? key,
-    this.title,
     this.obscureText,
     this.controller,
-    this.suffixIcon,
     required this.hintText,
   }) : super(key: key);
 
@@ -24,16 +20,6 @@ class CustomFormField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title!,
-            style: primaryTextStyle.copyWith(
-              fontSize: 14,
-              fontWeight: medium,
-            ),
-          ),
-          const SizedBox(
-            height: kDefaultPadding / 2,
-          ),
           Container(
             height: 40,
             padding: const EdgeInsets.symmetric(
@@ -46,10 +32,6 @@ class CustomFormField extends StatelessWidget {
             child: Center(
               child: Row(
                 children: [
-                  Icon(suffixIcon!),
-                  const SizedBox(
-                    width: kDefaultPadding,
-                  ),
                   Expanded(
                     child: TextFormField(
                       decoration: InputDecoration.collapsed(
