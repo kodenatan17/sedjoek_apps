@@ -5,7 +5,7 @@ Color primaryColor = const Color(0xFF2561E7);
 Color darkPrimaryColor = const Color(0xFF03045E);
 Color alertColor = const Color(0xFFED6363);
 Color priceColor = const Color(0xFF2c96F1);
-Color backgroundColor1 = const Color(0xFFF5F5F5);
+Color backgroundColor1 = const Color(0xFFF6F8FB);
 Color backgroundColor2 = const Color(0xFFFFFFFF);
 Color backgroundColor3 = const Color(0xFFF9F9F3);
 
@@ -13,12 +13,22 @@ Color primaryTextColor = const Color(0xFF14193F);
 Color secondaryTextColor = const Color(0xFFA4A8AE);
 Color titleTextColor = const Color(0xFF14193F);
 
+Color transparentColor = Colors.transparent;
+
+Color isActive = const Color(0xFF2561E6);
+Color unActive = const Color(0xFF14193F);
+
+Color cardTips = const Color(0xFFFFD800);
+Color cardInfo = const Color(0xFFA8FF48);
+Color cardPromo = const Color (0xFF007878);
+
+
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryTextColor,
 );
 
 TextStyle secondaryTextStyle = GoogleFonts.poppins(
-  color : secondaryTextColor,
+  color: secondaryTextColor,
 );
 
 TextStyle priceTextStyle = GoogleFonts.poppins(
@@ -29,9 +39,7 @@ TextStyle titleTextStyle = GoogleFonts.poppins(
   color: titleTextColor,
 );
 
-TextStyle whiteTextStyle = GoogleFonts.poppins(
-  color: Colors.white
-);
+TextStyle whiteTextStyle = GoogleFonts.poppins(color: Colors.white);
 
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;

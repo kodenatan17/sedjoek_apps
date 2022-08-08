@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/theme.dart';
+import 'package:sedjoek_apps/widgets/buttons.dart';
 
 class SuccessSignUp extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -34,25 +35,12 @@ class SuccessSignUp extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
-              width: 150,
-              height: 50,
-              child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(56),
-                  ),
-                ),
-                child: Text(
-                  "Ayo Mulai",
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
+            CustomFilledButton(
+              title: 'Ayo Mulai',
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/home', (route) => false);
+              },
             ),
           ],
         ),
