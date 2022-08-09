@@ -29,7 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter:
+  flutter_localizations:
     sdk: flutter
 
 
@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^3.0.1
   lottie: ^1.4.1
   carousel_slider: ^4.1.1
+  flutter_zoom_drawer: ^3.0.3
+  localization: ^2.1.0
 
 dev_dependencies:
   flutter_test:

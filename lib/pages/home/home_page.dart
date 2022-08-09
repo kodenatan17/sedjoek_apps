@@ -1,9 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:sedjoek_apps/theme.dart';
-import 'package:sedjoek_apps/widgets/card_tips.dart';
+import 'package:sedjoek_apps/components/card_tips.dart';
 
-class HomePage extends StatelessWidget {
+import 'menu_page.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final List<String> imgList = [
     'assets/images/card.png',
     'assets/images/card.png',
@@ -12,11 +21,20 @@ class HomePage extends StatelessWidget {
     'assets/images/card.png',
   ];
 
+  Widget zoomDrawer(BuildContext context) => ZoomDrawer(
+        style: DrawerStyle.style1,
+        menuScreen: MenuPage(),
+        mainScreen: HomePage(),
+      );
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        padding: const EdgeInsets.symmetric(
+          horizontal: kDefaultMargin * 1.5,
+          vertical: defaultMargin,
+        ),
         children: [
           buildProfile(),
           buildCardCarousel(),
@@ -31,8 +49,47 @@ class HomePage extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: defaultMargin),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                ZoomDrawer.of(context)!.toggle();
+              });
+            },
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/photo.png',
+                  ),
+                ),
+              ),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Container(
+                  width: 16,
+                  height: 16,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      color: primaryColor,
+                      size: 14,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: defaultMargin,
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -54,36 +111,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          Container(
-            width: 60,
-            height: 60,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/photo.png',
-                ),
-              ),
-            ),
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.check_circle,
-                    color: primaryColor,
-                    size: 14,
-                  ),
-                ),
-              ),
-            ),
           ),
         ],
       ),
