@@ -2,21 +2,30 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
-class CustomFormField extends StatelessWidget {
+class CustomFormField extends StatefulWidget {
   final String? title;
   final bool? obscureText;
   final TextEditingController? controller;
   final IconData? suffixIcon;
+  final double? height;
   final String hintText;
+  final TextEditingController? textController;
   const CustomFormField({
     Key? key,
     this.title,
     this.obscureText,
     this.controller,
     this.suffixIcon,
+    this.height = 40,
+    this.textController,
     required this.hintText,
   }) : super(key: key);
 
+  @override
+  State<CustomFormField> createState() => _CustomFormFieldState();
+}
+
+class _CustomFormFieldState extends State<CustomFormField> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +34,7 @@ class CustomFormField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title!,
+            widget.title!,
             style: primaryTextStyle.copyWith(
               fontSize: 14,
               fontWeight: medium,
@@ -35,7 +44,7 @@ class CustomFormField extends StatelessWidget {
             height: kDefaultPadding / 2,
           ),
           Container(
-            height: 40,
+            height: widget.height,
             padding: const EdgeInsets.symmetric(
               horizontal: kDefaultPadding / 2,
             ),
@@ -46,14 +55,15 @@ class CustomFormField extends StatelessWidget {
             child: Center(
               child: Row(
                 children: [
-                  Icon(suffixIcon!),
+                  Icon(widget.suffixIcon!),
                   const SizedBox(
                     width: kDefaultPadding,
                   ),
                   Expanded(
                     child: TextFormField(
+                      controller: widget.textController,
                       decoration: InputDecoration.collapsed(
-                        hintText: hintText,
+                        hintText: widget.hintText,
                         hintStyle: secondaryTextStyle.copyWith(fontSize: 14),
                       ),
                     ),

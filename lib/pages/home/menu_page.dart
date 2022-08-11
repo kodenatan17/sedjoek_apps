@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/components/menu_item.dart';
+import 'package:sedjoek_apps/theme.dart';
 
 class MenuItems {
   static final payment = CustomMenuItem(
@@ -41,6 +42,8 @@ class MenuItems {
 
 class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      color: primaryColor,
+    );
   }
 }

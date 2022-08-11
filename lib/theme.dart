@@ -12,6 +12,8 @@ Color backgroundColor3 = const Color(0xFFF9F9F3);
 Color backgroundColor4 = const Color(0xFF2561E6);
 Color backgroundColor5 = const Color(0xFFE3EAFB);
 Color backgroundColor6 = const Color(0xFF0B50E9);
+Color backgroundColor7 = const Color(0xFFF5F5F5);
+Color bgCheckoutCard = const Color(0xFFECEDEF);
 
 Color yellowColor = const Color(0xFFFEF27A);
 Color primaryTextColor = const Color(0xFF14193F);
@@ -26,6 +28,11 @@ Color unActive = const Color(0xFF14193F);
 Color cardTips = const Color(0xFFFFD800);
 Color cardInfo = const Color(0xFFA8FF48);
 Color cardPromo = const Color(0xFF007878);
+Color cardNotification = const Color(0xFF779FF8);
+
+TextStyle alertTextStyle = GoogleFonts.poppins(
+  color: alertColor,
+);
 
 TextStyle yellowTextStyle = GoogleFonts.poppins(
   color: yellowColor,

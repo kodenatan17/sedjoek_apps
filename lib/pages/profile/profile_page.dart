@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sedjoek_apps/components/profile_menu.dart';
 import 'package:sedjoek_apps/theme.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -67,28 +68,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget menuItem(String text) {
-    return Container(
-      margin: const EdgeInsets.only(top: kDefaultMargin * 1.6),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            text,
-            style: primaryTextStyle.copyWith(
-              fontSize: 14,
-              fontWeight: medium,
-            ),
-          ),
-          Icon(
-            Icons.chevron_right,
-            color: primaryTextColor,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget content() {
     return Expanded(
       child: Container(
@@ -110,9 +89,8 @@ class ProfilePage extends StatelessWidget {
                 fontWeight: semiBold,
               ),
             ),
-            menuItem('Edit Profil'),
-            menuItem('Upload Data Tambahan'),
-            menuItem('Bantuan'),
+            ProfileMenu(text: 'Edit Profile', routes: '/profile-edit'),
+            ProfileMenu(text:'Bantuan', routes: '/help'),
             SizedBox(
               height: kDefaultPadding * 1.6,
             ),
@@ -123,10 +101,10 @@ class ProfilePage extends StatelessWidget {
                 fontWeight: semiBold,
               ),
             ),
-            menuItem('Tentang Sedjoek'),
-            menuItem('Kebijakan Privasi'),
-            menuItem('Syarat & Ketentuan'),
-            menuItem('Rate Aplikasi'),
+            ProfileMenu(text: 'Tentang Sedjoek', routes: '/about-us'),
+            ProfileMenu(text: 'Kebijakan Privasi', routes: '/kebijakan-privasi'),
+            ProfileMenu(text: 'Syarat & Ketentuan', routes: '/syarat-ketentuan'),
+            ProfileMenu(text: 'Rate Aplikasi', routes: '/rate-aplikasi'),
           ],
         ),
       ),

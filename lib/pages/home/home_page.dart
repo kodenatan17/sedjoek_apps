@@ -2,10 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:sedjoek_apps/components/photo_profile.dart';
 import 'package:sedjoek_apps/theme.dart';
 import 'package:sedjoek_apps/components/card_tips.dart';
 
-import 'menu_page.dart';
+import '../../widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -21,10 +22,8 @@ class _HomePageState extends State<HomePage> {
     'assets/images/card.png',
   ];
 
-  Widget zoomDrawer(BuildContext context) => ZoomDrawer(
-        style: DrawerStyle.style1,
-        menuScreen: MenuPage(),
-        mainScreen: HomePage(),
+  Widget zoomDrawer() => SafeArea(
+        child: DrawerWidget(),
       );
 
   Widget build(BuildContext context) {
@@ -51,40 +50,10 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () {
-              setState(() {
-                ZoomDrawer.of(context)!.toggle();
-              });
-            },
-            child: Container(
-              width: 60,
-              height: 60,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: AssetImage(
-                    'assets/images/photo.png',
-                  ),
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  width: 16,
-                  height: 16,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.check_circle,
-                      color: primaryColor,
-                      size: 14,
-                    ),
-                  ),
-                ),
-              ),
+            onTap: () => ZoomDrawer.of(context)?.toggle(),
+            child: PhotoProfile(
+              photoURL: 'assets/images/photo.png',
+              isVerified: true,
             ),
           ),
           SizedBox(

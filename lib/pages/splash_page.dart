@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
           child: Column(
             children: [
               Image.asset(
-                "assets/logo/splash_screen.png",
+                "assets/images/splash_screen.png",
                 fit: BoxFit.cover,
                 width: width * .5,
               ),
