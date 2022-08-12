@@ -1,14 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sedjoek_apps/widgets/buttons.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
+import 'package:sedjoek_apps/widgets/loading_button.dart';
 
+import '../../provider/auth_provider.dart';
 import '../../theme.dart';
 import '../../widgets/agreement_text.dart';
 import '../../widgets/header.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  final TextEditingController _passController = TextEditingController(text: '');
+
+  final TextEditingController _emailController =
+      TextEditingController(text: '');
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignIn() async {
+      setState(() {
+        isLoading = true;
+      });
+      if (await authProvider.register(
+        password: _passController.text,
+        email: _emailController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor1,
@@ -19,7 +60,13 @@ class SignInPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Header(),
-              bodyContainer(context),
+              bodyContainer(
+                context,
+                _passController,
+                _emailController,
+                handleSignIn(),
+                isLoading,
+              ),
               AgreementText(),
               Spacer(),
               footerContainer(context),
@@ -31,7 +78,13 @@ class SignInPage extends StatelessWidget {
   }
 }
 
-Widget bodyContainer(BuildContext context) {
+Widget bodyContainer(
+  BuildContext context,
+  TextEditingController _passwordController,
+  TextEditingController _emailController,
+  Future handleSignIn,
+  bool isLoading,
+) {
   return Container(
     width: MediaQuery.of(context).size.width,
     padding: const EdgeInsets.symmetric(
@@ -47,24 +100,28 @@ Widget bodyContainer(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomFormField(
+          controller: _emailController,
           title: "Email Address",
           obscureText: false,
           hintText: "Your Email Address",
           suffixIcon: Icons.email,
         ),
         CustomFormField(
+          controller: _passwordController,
           title: "Password",
           obscureText: true,
           hintText: "Your Password",
           suffixIcon: Icons.key,
         ),
         textForgotPassword(),
-        CustomFilledButton(
-          title: "Masuk",
-          onPressed: () {
-            Navigator.pushNamed(context, '/main');
-          },
-        ),
+        isLoading
+            ? CustomLoadingButton(title: 'Loading')
+            : CustomFilledButton(
+                title: "Masuk",
+                onPressed: () {
+                  handleSignIn;
+                },
+              ),
       ],
     ),
   );

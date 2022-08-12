@@ -16,7 +16,6 @@ class CardNotification extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.symmetric(
         horizontal: 24,
         vertical: kDefaultPadding,
@@ -26,7 +25,7 @@ class CardNotification extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Image.asset(
-            'assets/images/ico_info.png',
+            'assets/icons/ico_notif.png',
             width: 20,
           ),
           Column(

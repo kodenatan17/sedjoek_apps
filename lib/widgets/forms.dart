@@ -61,7 +61,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
                   ),
                   Expanded(
                     child: TextFormField(
-                      controller: widget.textController,
+                      controller: widget.controller,
                       decoration: InputDecoration.collapsed(
                         hintText: widget.hintText,
                         hintStyle: secondaryTextStyle.copyWith(fontSize: 14),

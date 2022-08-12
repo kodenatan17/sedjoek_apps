@@ -65,7 +65,7 @@ class CustomCardTips extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  "assets/icons/maskot_1.png",
+                  "assets/icons/maskot_polos.png",
                 ),
                 fit: BoxFit.cover,
               ),

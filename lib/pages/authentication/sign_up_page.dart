@@ -1,14 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sedjoek_apps/provider/auth_provider.dart';
 import 'package:sedjoek_apps/widgets/buttons.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
 
 import '../../theme.dart';
 import '../../widgets/agreement_text.dart';
 import '../../widgets/header.dart';
+import '../../widgets/loading_button.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  final TextEditingController _nameController = TextEditingController(text: '');
+
+  final TextEditingController _passController = TextEditingController(text: '');
+
+  final TextEditingController _emailController =
+      TextEditingController(text: '');
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+      if (await authProvider.register(
+        name: _nameController.text,
+        password: _passController.text,
+        email: _emailController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Register!',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor1,
@@ -19,7 +63,14 @@ class SignUpPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Header(),
-              bodyContainer(context),
+              bodyContainer(
+                context,
+                _nameController,
+                _passController,
+                _emailController,
+                handleSignUp(),
+                isLoading,
+              ),
               AgreementText(),
               Spacer(),
               footerContainer(context),
@@ -31,7 +82,14 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-Widget bodyContainer(BuildContext context) {
+Widget bodyContainer(
+  BuildContext context,
+  TextEditingController _nameController,
+  TextEditingController _passController,
+  TextEditingController _emailController,
+  Future handleSignUp,
+  bool isLoading,
+) {
   return Container(
     width: MediaQuery.of(context).size.width,
     padding: const EdgeInsets.symmetric(
@@ -46,27 +104,34 @@ Widget bodyContainer(BuildContext context) {
     child: Column(
       children: [
         CustomFormField(
+          controller: _nameController,
           title: "Name",
           obscureText: true,
           hintText: "Your Name",
           suffixIcon: Icons.people,
         ),
         CustomFormField(
+          controller: _emailController,
           title: "Email",
           obscureText: false,
           hintText: "Your Email",
           suffixIcon: Icons.email,
         ),
         CustomFormField(
+          controller: _passController,
           title: "Password",
           obscureText: true,
           hintText: "Your Password",
           suffixIcon: Icons.key,
         ),
-        CustomFilledButton(
-          title: "Daftar",
-          onPressed: () {},
-        ),
+        isLoading
+            ? CustomLoadingButton(
+                title: 'Loading',
+              )
+            : CustomFilledButton(
+                title: "Daftar",
+                onPressed: () => handleSignUp,
+              ),
       ],
     ),
   );

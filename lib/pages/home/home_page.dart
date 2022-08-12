@@ -2,10 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:provider/provider.dart';
 import 'package:sedjoek_apps/components/photo_profile.dart';
+import 'package:sedjoek_apps/provider/auth_provider.dart';
 import 'package:sedjoek_apps/theme.dart';
 import 'package:sedjoek_apps/components/card_tips.dart';
 
+import '../../models/user_model.dart';
 import '../../widgets/drawer.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,6 +30,10 @@ class _HomePageState extends State<HomePage> {
       );
 
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+    
+    
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: ListView(
@@ -35,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           vertical: defaultMargin,
         ),
         children: [
-          buildProfile(),
+          buildProfile(user),
           buildCardCarousel(),
           buildCategories(),
           buildTips(),
@@ -44,7 +51,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildProfile() {
+  Widget buildProfile(UserModel user) {
     return Container(
       margin: const EdgeInsets.only(top: defaultMargin),
       child: Row(
@@ -52,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () => ZoomDrawer.of(context)?.toggle(),
             child: PhotoProfile(
-              photoURL: 'assets/images/photo.png',
+              photoURL: '${user.profilePhotoPath}',
               isVerified: true,
             ),
           ),
@@ -73,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 height: 2,
               ),
               Text(
-                'Galih Wicaksana',
+                '${user.name}',
                 style: titleTextStyle.copyWith(
                   fontSize: 20,
                   fontWeight: semiBold,

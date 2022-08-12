@@ -106,7 +106,10 @@ class CartPage extends StatelessWidget {
               child: CustomFilledButton(
                 width: double.infinity,
                 title: 'Lanjutkan Pembayaran',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/checkout-page', (route) => false);
+                },
                 radius: kDefaultCircular,
               ),
             ),

@@ -24,7 +24,7 @@ class PhotoProfile extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-            image: AssetImage(
+            image: NetworkImage(
               photoURL,
             ),
           ),

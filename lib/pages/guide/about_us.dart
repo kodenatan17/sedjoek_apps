@@ -8,11 +8,11 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: primaryColor,
+        backgroundColor: backgroundColor7,
         centerTitle: true,
         title: Text(
-          'Hai Galih Wicaksana, Djeoki siap membantu kamu',
-          style: whiteTextStyle.copyWith(
+          'Tentang Djoeki',
+          style: primaryTextStyle.copyWith(
             fontSize: 16,
             fontWeight: semiBold,
           ),
@@ -28,8 +28,43 @@ class AboutUsPage extends StatelessWidget {
         padding: const EdgeInsets.all(kDefaultPadding * 2),
         child: Column(
           children: [
-            ListView(
-              
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons/maskot_polos.png',
+                  width: 150,
+                  fit: BoxFit.cover,
+                ),
+                Image.asset(
+                  'assets/icons/maskot_title.png',
+                  width: 150,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
+            ),
+            Text(
+              'Versi 1.0.0',
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(
+              child: Text(
+                'Sedjoek adalah platform penyedia jasa penyewaan AC residensial berbasis aplikasi pertama di Indonesia yang dikemas secara menarik dan dilengkapi dengan berbagai metode pembayaran, pastinya BEBAS biaya pengiriman dan pemasangan.',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: medium,
+                ),
+                textAlign: TextAlign.center,
+              ),
             )
           ],
         ),

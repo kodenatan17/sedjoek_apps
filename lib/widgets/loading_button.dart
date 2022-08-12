@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
-class CustomFilledButton extends StatelessWidget {
+class CustomLoadingButton extends StatelessWidget {
   final String title;
   final double width;
   final double height;
   final double radius;
   final VoidCallback? onPressed;
 
-  const CustomFilledButton({
+  const CustomLoadingButton({
     Key? key,
     required this.title,
     this.width = double.infinity,
@@ -31,12 +31,30 @@ class CustomFilledButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(radius),
           ),
         ),
-        child: Text(
-          title,
-          style: whiteTextStyle.copyWith(
-            fontSize: 16,
-            fontWeight: semiBold,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation(
+                  Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 4,
+            ),
+            Text(
+              title,
+              style: whiteTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+          ],
         ),
       ),
     );
