@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
         password: _passController.text,
         email: _emailController.text,
       )) {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushNamed(context, '/main');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -53,6 +53,103 @@ class _SignUpPageState extends State<SignUpPage> {
       });
     }
 
+    Widget signUpButton() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 30),
+        child: TextButton(
+          onPressed: handleSignUp,
+          style: TextButton.styleFrom(
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: Text(
+            'Daftar',
+            style: whiteTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget bodyContainer() {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.symmetric(
+          horizontal: kDefaultPadding,
+          vertical: kDefaultPadding,
+        ),
+        margin: const EdgeInsets.only(top: defaultMargin / 2),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(kDefaultCircular),
+        ),
+        child: Column(
+          children: [
+            CustomFormField(
+              controller: _nameController,
+              title: "Name",
+              obscureText: false,
+              hintText: "Your Name",
+              suffixIcon: Icons.people,
+            ),
+            CustomFormField(
+              controller: _emailController,
+              title: "Email",
+              obscureText: false,
+              hintText: "Your Email",
+              suffixIcon: Icons.email,
+            ),
+            CustomFormField(
+              controller: _passController,
+              title: "Password",
+              obscureText: true,
+              hintText: "Your Password",
+              suffixIcon: Icons.key,
+            ),
+            isLoading
+                ? CustomLoadingButton(
+                    title: 'Loading',
+                  )
+                : signUpButton(),
+          ],
+        ),
+      );
+    }
+
+    Widget footerContainer(BuildContext context) {
+      return Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Sudah punya akun ? ',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 12,
+                fontWeight: semiBold,
+              ),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pushNamed(context, '/sign-in'),
+              child: Text(
+                'Masuk',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor1,
@@ -63,14 +160,7 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Header(),
-              bodyContainer(
-                context,
-                _nameController,
-                _passController,
-                _emailController,
-                handleSignUp(),
-                isLoading,
-              ),
+              bodyContainer(),
               AgreementText(),
               Spacer(),
               footerContainer(context),
@@ -80,87 +170,4 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-}
-
-Widget bodyContainer(
-  BuildContext context,
-  TextEditingController _nameController,
-  TextEditingController _passController,
-  TextEditingController _emailController,
-  Future handleSignUp,
-  bool isLoading,
-) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    padding: const EdgeInsets.symmetric(
-      horizontal: kDefaultPadding,
-      vertical: kDefaultPadding,
-    ),
-    margin: const EdgeInsets.only(top: defaultMargin / 2),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(kDefaultCircular),
-    ),
-    child: Column(
-      children: [
-        CustomFormField(
-          controller: _nameController,
-          title: "Name",
-          obscureText: true,
-          hintText: "Your Name",
-          suffixIcon: Icons.people,
-        ),
-        CustomFormField(
-          controller: _emailController,
-          title: "Email",
-          obscureText: false,
-          hintText: "Your Email",
-          suffixIcon: Icons.email,
-        ),
-        CustomFormField(
-          controller: _passController,
-          title: "Password",
-          obscureText: true,
-          hintText: "Your Password",
-          suffixIcon: Icons.key,
-        ),
-        isLoading
-            ? CustomLoadingButton(
-                title: 'Loading',
-              )
-            : CustomFilledButton(
-                title: "Daftar",
-                onPressed: () => handleSignUp,
-              ),
-      ],
-    ),
-  );
-}
-
-Widget footerContainer(BuildContext context) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Sudah punya akun ? ',
-          style: secondaryTextStyle.copyWith(
-            fontSize: 12,
-            fontWeight: semiBold,
-          ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(context, '/sign-in'),
-          child: Text(
-            'Masuk',
-            style: primaryTextStyle.copyWith(
-              fontSize: 12,
-              fontWeight: medium,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1041314506107",
+    "project_id": "sedjoek-b4b90",
+    "storage_bucket": "sedjoek-b4b90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1041314506107:android:eed4e52fc6c73526ef49de",
+        "android_client_info": {
+          "package_name": "com.kodenatan.sedjoek_apps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1041314506107-l5lfdpb64711e57pvsedscivm3p35hi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxzeM-EnUB_vazMp1A6QFSc3ZBNi9nkH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1041314506107-l5lfdpb64711e57pvsedscivm3p35hi7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

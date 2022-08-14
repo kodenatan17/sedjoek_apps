@@ -15,7 +15,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final TextEditingController _passController = TextEditingController(text: '');
+  final TextEditingController _passwordController =
+      TextEditingController(text: '');
 
   final TextEditingController _emailController =
       TextEditingController(text: '');
@@ -29,17 +30,17 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         isLoading = true;
       });
-      if (await authProvider.register(
-        password: _passController.text,
+      if (await authProvider.login(
+        password: _passwordController.text,
         email: _emailController.text,
       )) {
-        Navigator.pushNamed(context, '/home');
+        Navigator.pushNamed(context, '/main');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              'Gagal Register!',
+              'Gagal Login!',
               textAlign: TextAlign.center,
             ),
           ),
@@ -48,6 +49,112 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         isLoading = false;
       });
+    }
+
+    Widget signInButton() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 30),
+        child: TextButton(
+          onPressed: handleSignIn,
+          style: TextButton.styleFrom(
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: Text(
+            'Masuk',
+            style: whiteTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget textForgotPassword() {
+      return Container(
+        alignment: Alignment.centerRight,
+        height: 50,
+        child: TextButton(
+          onPressed: () {},
+          child: Text(
+            "Lupa Kata Sandi ?",
+            style: TextStyle(
+              fontSize: 14,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget bodyContainer() {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.symmetric(
+          horizontal: kDefaultPadding,
+          vertical: kDefaultPadding,
+        ),
+        margin: const EdgeInsets.only(top: defaultMargin / 2),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(kDefaultCircular),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomFormField(
+              controller: _emailController,
+              title: "Email Address",
+              obscureText: false,
+              hintText: "Your Email Address",
+              suffixIcon: Icons.email,
+            ),
+            CustomFormField(
+              controller: _passwordController,
+              title: "Password",
+              obscureText: true,
+              hintText: "Your Password",
+              suffixIcon: Icons.key,
+            ),
+            textForgotPassword(),
+            isLoading
+                ? CustomLoadingButton(title: 'Loading')
+                : signInButton(),
+          ],
+        ),
+      );
+    }
+
+    Widget footerContainer(BuildContext context) {
+      return Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Tidak punya akun ? ',
+              style: secondaryTextStyle.copyWith(
+                fontSize: 12,
+                fontWeight: semiBold,
+              ),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pushNamed(context, '/sign-up'),
+              child: Text(
+                'Daftar Sekarang',
+                style: primaryTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
     }
 
     return Scaffold(
@@ -60,13 +167,7 @@ class _SignInPageState extends State<SignInPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Header(),
-              bodyContainer(
-                context,
-                _passController,
-                _emailController,
-                handleSignIn(),
-                isLoading,
-              ),
+              bodyContainer(),
               AgreementText(),
               Spacer(),
               footerContainer(context),
@@ -76,97 +177,4 @@ class _SignInPageState extends State<SignInPage> {
       ),
     );
   }
-}
-
-Widget bodyContainer(
-  BuildContext context,
-  TextEditingController _passwordController,
-  TextEditingController _emailController,
-  Future handleSignIn,
-  bool isLoading,
-) {
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    padding: const EdgeInsets.symmetric(
-      horizontal: kDefaultPadding,
-      vertical: kDefaultPadding,
-    ),
-    margin: const EdgeInsets.only(top: defaultMargin / 2),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(kDefaultCircular),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomFormField(
-          controller: _emailController,
-          title: "Email Address",
-          obscureText: false,
-          hintText: "Your Email Address",
-          suffixIcon: Icons.email,
-        ),
-        CustomFormField(
-          controller: _passwordController,
-          title: "Password",
-          obscureText: true,
-          hintText: "Your Password",
-          suffixIcon: Icons.key,
-        ),
-        textForgotPassword(),
-        isLoading
-            ? CustomLoadingButton(title: 'Loading')
-            : CustomFilledButton(
-                title: "Masuk",
-                onPressed: () {
-                  handleSignIn;
-                },
-              ),
-      ],
-    ),
-  );
-}
-
-Widget textForgotPassword() {
-  return Container(
-    alignment: Alignment.centerRight,
-    height: 50,
-    child: TextButton(
-      onPressed: () {},
-      child: Text(
-        "Lupa Kata Sandi ?",
-        style: TextStyle(
-          fontSize: 14,
-        ),
-      ),
-    ),
-  );
-}
-
-Widget footerContainer(BuildContext context) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Tidak punya akun ? ',
-          style: secondaryTextStyle.copyWith(
-            fontSize: 12,
-            fontWeight: semiBold,
-          ),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pushNamed(context, '/sign-up'),
-          child: Text(
-            'Daftar Sekarang',
-            style: primaryTextStyle.copyWith(
-              fontSize: 12,
-              fontWeight: medium,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }

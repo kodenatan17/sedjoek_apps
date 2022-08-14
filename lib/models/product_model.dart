@@ -36,7 +36,7 @@ class ProductModel {
     category = CategoryModel.fromJson(json['category']);
     brand = BrandModel.fromJson(json['brand']);
     galleries = json['galleries']
-        .map((gallery) => GalleryModel.fromJson(gallery))
+        .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
     createdAt = DateTime.parse(json['created_at']);
     updateAt = DateTime.parse(json['updateAt']);

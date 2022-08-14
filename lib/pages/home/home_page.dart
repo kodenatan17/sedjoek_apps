@@ -5,6 +5,7 @@ import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:sedjoek_apps/components/photo_profile.dart';
 import 'package:sedjoek_apps/provider/auth_provider.dart';
+import 'package:sedjoek_apps/provider/product_provider.dart';
 import 'package:sedjoek_apps/theme.dart';
 import 'package:sedjoek_apps/components/card_tips.dart';
 
@@ -18,11 +19,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<String> imgList = [
-    'assets/images/card.png',
-    'assets/images/card.png',
-    'assets/images/card.png',
-    'assets/images/card.png',
-    'assets/images/card.png',
+    'assets/images/banner_1.png',
+    'assets/images/banner_2.png',
+    'assets/images/banner_3.png',
+    'assets/images/banner_4.png',
   ];
 
   Widget zoomDrawer() => SafeArea(
@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
-    
-    
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
+
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: ListView(
@@ -59,7 +59,9 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () => ZoomDrawer.of(context)?.toggle(),
             child: PhotoProfile(
-              photoURL: '${user.profilePhotoPath}',
+              photoURL: user.profilePhotoPath == null
+                  ? 'assets/images/photo.png'
+                  : user.profilePhotoPath!,
               isVerified: true,
             ),
           ),
@@ -140,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(kDefaultCircular),
                   color: primaryColor),
               child: Text(
-                'Semua AC',
+                'Paket AC',
                 style: whiteTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: medium,
@@ -156,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                 border: Border.all(color: Colors.grey.shade300),
               ),
               child: Text(
-                'Paket AC 1 PK',
+                'Artikel',
                 style: secondaryTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: medium,
@@ -172,7 +174,7 @@ class _HomePageState extends State<HomePage> {
                 border: Border.all(color: Colors.grey.shade300),
               ),
               child: Text(
-                'Paket AC 1/2 PK',
+                'Promo',
                 style: secondaryTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: medium,
@@ -188,23 +190,7 @@ class _HomePageState extends State<HomePage> {
                 border: Border.all(color: Colors.grey.shade300),
               ),
               child: Text(
-                'Paket AC 1.5 PK',
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 16),
-              padding: const EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kDefaultCircular),
-                color: transparentColor,
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Text(
-                'Paket AC 2 PK',
+                'Hitung PKmu',
                 style: secondaryTextStyle.copyWith(
                   fontSize: 13,
                   fontWeight: medium,
@@ -226,19 +212,13 @@ class _HomePageState extends State<HomePage> {
         //tips card => info, tips, promo
         children: [
           CustomCardTips(
-            cardType: 'tips',
-            title: 'Tips memilih AC untuk rumah',
-            subtitle: 'Jangan salah pilih AC untuk rumah kamu',
+            img: 'assets/images/card_artikel1.png',
           ),
           CustomCardTips(
-            cardType: 'info',
-            title: 'Cara Merawat AC supaya awet',
-            subtitle: 'Inilah cara merawat AC supaya tidak rusak',
+            img: 'assets/images/card_artikel2.png',
           ),
           CustomCardTips(
-            cardType: 'promo',
-            title: 'Ketahui jenis-jenis AC di pasaran',
-            subtitle: 'Ternyata AC ada banyak jenisnya loh',
+            img: 'assets/images/card_artikel3.png',
           ),
         ],
       ),

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sedjoek_apps/provider/product_provider.dart';
 import 'package:sedjoek_apps/theme.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,13 +14,12 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    Timer(
-        const Duration(
-          seconds: 2,
-        ), () {
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/onboarding', (route) => false);
-    });
+    getInit();
+  }
+
+  getInit() async {
+    await Provider.of<ProductProvider>(context, listen: false).getProducts;
+    Navigator.pushNamedAndRemoveUntil(context, '/onboarding', (route) => false);
   }
 
   @override
