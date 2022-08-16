@@ -108,6 +108,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                 )
                 .toList(),
             options: CarouselOptions(
+              viewportFraction: 1,
               initialPage: 0,
               onPageChanged: (index, reason) {
                 setState(() {

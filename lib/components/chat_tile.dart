@@ -13,7 +13,7 @@ class ChatTile extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            color: primaryColor
+            color: backgroundColor7
           ),
           margin: const EdgeInsets.only(top: defaultMargin),
           child: Column(
@@ -21,7 +21,7 @@ class ChatTile extends StatelessWidget {
               Row(
                 children: [
                   Image.asset(
-                    'assets/icons/maskot_1.png',
+                    'assets/icons/maskot_polos.png',
                     width: 40,
                   ),
                   SizedBox(

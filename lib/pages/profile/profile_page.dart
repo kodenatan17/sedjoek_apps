@@ -6,11 +6,8 @@ import 'package:sedjoek_apps/provider/auth_provider.dart';
 import 'package:sedjoek_apps/theme.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
 
@@ -25,12 +22,19 @@ class ProfilePage extends StatelessWidget {
             child: Row(
               children: [
                 ClipOval(
-                  child: Image.network(
-                    user.profilePhotoPath!,
-                    width: 45,
-                    height: 45,
-                    fit: BoxFit.cover,
-                  ),
+                  child: user.profilePhotoPath == null
+                      ? Image.asset(
+                          'assets/images/photo.png',
+                          width: 45,
+                          height: 45,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          user.profilePhotoPath,
+                          width: 45,
+                          height: 45,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 SizedBox(
                   width: kDefaultPadding * 1.6,
@@ -40,7 +44,7 @@ class ProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.name!,
+                        user.name,
                         style: primaryTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: semiBold,
@@ -50,14 +54,14 @@ class ProfilePage extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        user.email!,
+                        user.email,
                         style: secondaryTextStyle.copyWith(
                           fontSize: 14,
                           fontWeight: medium,
                         ),
                       ),
                       Text(
-                        user.phone!,
+                        user.phone.toString(),
                         style: secondaryTextStyle.copyWith(
                           fontSize: 14,
                           fontWeight: medium,

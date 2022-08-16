@@ -14,6 +14,8 @@ class ProductService {
       headers: headers,
     );
 
+    print(response.body);
+
     if (response.statusCode == 200) {
       List data = jsonDecode(response.body)['data']['data'];
       List<ProductModel> products = [];

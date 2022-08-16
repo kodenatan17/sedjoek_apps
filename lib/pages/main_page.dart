@@ -69,6 +69,7 @@ class _MainPageState extends State<MainPage> {
                   margin: const EdgeInsets.only(
                     top: kDefaultMargin,
                     bottom: kDefaultMargin,
+                    right: defaultMargin
                   ),
                   child: Image.asset(
                     "assets/icons/icon_chat.png",
@@ -83,6 +84,7 @@ class _MainPageState extends State<MainPage> {
                   margin: const EdgeInsets.only(
                     top: kDefaultMargin,
                     bottom: kDefaultMargin,
+                    left: defaultMargin
                   ),
                   child: Image.asset(
                     "assets/icons/icon_fav.png",
@@ -124,7 +126,7 @@ class _MainPageState extends State<MainPage> {
           return const WishlistPage();
           break;
         case 3:
-          return const ProfilePage();
+          return ProfilePage();
           break;
         default:
           return HomePage();

@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
           '/chat': (context) => const ChatPage(),
           '/chat-detail': (context) => const DetailChatPage(),
           //PROFILE
-          '/profile': (context) => const ProfilePage(),
+          '/profile': (context) => ProfilePage(),
           '/profile-edit': (context) => const ProfileEditPage(),
           '/success-edit': (context) => const SuccessEditPage(),
           //GUIDE

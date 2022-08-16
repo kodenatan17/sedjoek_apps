@@ -15,20 +15,29 @@ class PhotoProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         ZoomDrawer.of(context)!.toggle();
       },
       child: Container(
         width: 60,
         height: 60,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          image: DecorationImage(
-            image: NetworkImage(
-              photoURL,
-            ),
-          ),
-        ),
+        decoration: photoURL == null
+            ? BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/photo.png',
+                    ),
+                    fit: BoxFit.cover),
+              )
+            : BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: NetworkImage(
+                      photoURL,
+                    ),
+                    fit: BoxFit.cover),
+              ),
         child: Align(
           alignment: Alignment.topRight,
           child: Container(

@@ -12,10 +12,18 @@ class CustomCardTips extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 100,
+      height: 110,
       margin: const EdgeInsets.only(bottom: defaultMargin * .5),
-      padding: const EdgeInsets.all(kDefaultPadding),
+      padding: const EdgeInsets.symmetric(vertical : kDefaultPadding),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade400,
+            spreadRadius: 1,
+            blurRadius: 15,
+            offset: const Offset(0, 1)
+          )
+        ],
         borderRadius: BorderRadius.circular(kDefaultCircular),
         image: DecorationImage(
           image: AssetImage(

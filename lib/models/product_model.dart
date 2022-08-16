@@ -1,4 +1,3 @@
-import 'package:sedjoek_apps/models/brand_model.dart';
 import 'package:sedjoek_apps/models/category_model.dart';
 import 'package:sedjoek_apps/models/gallery_model.dart';
 
@@ -8,11 +7,10 @@ class ProductModel {
   double? price;
   String? description;
   String? tags;
-  CategoryModel? category;
-  BrandModel? brand;
+  late CategoryModel category;
   DateTime? createdAt;
   DateTime? updateAt;
-  List<GalleryModel>? galleries;
+  late List<GalleryModel> galleries;
 
   ProductModel({
     required this.id,
@@ -21,7 +19,6 @@ class ProductModel {
     required this.description,
     required this.tags,
     required this.category,
-    required this.brand,
     required this.createdAt,
     required this.updateAt,
     required this.galleries,
@@ -34,7 +31,6 @@ class ProductModel {
     description = json['description'];
     tags = json['tags'];
     category = CategoryModel.fromJson(json['category']);
-    brand = BrandModel.fromJson(json['brand']);
     galleries = json['galleries']
         .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
@@ -49,8 +45,8 @@ class ProductModel {
       'price': price,
       'description': description,
       'tags': tags,
-      'category': category!.toJson(),
-      'brand': brand!.toJson(),
+      'category': category.toJson(),
+      'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
       'createdAt': createdAt.toString(),
       'updateAt': updateAt.toString(),
     };

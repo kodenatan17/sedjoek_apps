@@ -1,8 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:provider/provider.dart';
+import 'package:sedjoek_apps/components/card_backup.dart';
+import 'package:sedjoek_apps/components/card_popular_product.dart';
 import 'package:sedjoek_apps/components/photo_profile.dart';
 import 'package:sedjoek_apps/provider/auth_provider.dart';
 import 'package:sedjoek_apps/provider/product_provider.dart';
@@ -25,6 +26,15 @@ class _HomePageState extends State<HomePage> {
     'assets/images/banner_4.png',
   ];
 
+  final List<String> navItem = [
+    'Paket AC',
+    'Hitung PK',
+    'Artikel',
+    'Promo',
+  ];
+
+  int currentNavItem = 0;
+
   Widget zoomDrawer() => SafeArea(
         child: DrawerWidget(),
       );
@@ -33,7 +43,6 @@ class _HomePageState extends State<HomePage> {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
-
     return Scaffold(
       backgroundColor: backgroundColor1,
       body: ListView(
@@ -44,9 +53,81 @@ class _HomePageState extends State<HomePage> {
         children: [
           buildProfile(user),
           buildCardCarousel(),
+          buildProductTitle(),
+          // buildProduct(productProvider),
+          buildProduct(),
           buildCategories(),
-          buildTips(),
         ],
+      ),
+    );
+  }
+
+  Widget buildProductTitle() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: defaultMargin,
+        right: defaultMargin,
+      ),
+      child: Text(
+        'Popular Products',
+        style: primaryTextStyle.copyWith(
+          fontSize: 18,
+          fontWeight: semiBold,
+        ),
+      ),
+    );
+  }
+
+  // Widget buildProduct(ProductProvider productProvider) {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(kDefaultCircular),
+  //     ),
+  //     margin: const EdgeInsets.only(top: kDefaultMargin),
+  //     child: SingleChildScrollView(
+  //       scrollDirection: Axis.horizontal,
+  //       child: Row(
+  //         children: [
+  //           SizedBox(
+  //             height: kDefaultPadding * 2,
+  //           ),
+  //           Row(
+  //             children: productProvider.products
+  //                 .map(
+  //                   (product) => CardPopularProduct(product),
+  //                 )
+  //                 .toList(),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  Widget buildProduct() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(kDefaultCircular),
+      ),
+      margin: const EdgeInsets.only(top: kDefaultMargin),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            SizedBox(
+              height: kDefaultPadding * 2,
+            ),
+            Row(
+              children: [
+                CardBackup(),
+                CardBackup(),
+                CardBackup(),
+                CardBackup(),
+                CardBackup(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -59,9 +140,7 @@ class _HomePageState extends State<HomePage> {
           GestureDetector(
             onTap: () => ZoomDrawer.of(context)?.toggle(),
             child: PhotoProfile(
-              photoURL: user.profilePhotoPath == null
-                  ? 'assets/images/photo.png'
-                  : user.profilePhotoPath!,
+              photoURL: user.profilePhotoPath,
               isVerified: true,
             ),
           ),
@@ -98,14 +177,14 @@ class _HomePageState extends State<HomePage> {
   Widget buildCardCarousel() {
     return Container(
       width: double.infinity,
-      height: 220,
+      height: 150,
       margin: const EdgeInsets.only(
-        top: defaultMargin,
+        top: kDefaultMargin * 1.5,
       ),
       child: CarouselSlider(
         options: CarouselOptions(
-          autoPlay: true,
-          autoPlayAnimationDuration: Duration(seconds: 6),
+          viewportFraction: 0.9,
+          aspectRatio: 3 / 4,
           enableInfiniteScroll: false,
         ),
         items: imgList.map<Widget>((i) {
@@ -113,9 +192,19 @@ class _HomePageState extends State<HomePage> {
             builder: (BuildContext context) {
               return Container(
                 width: MediaQuery.of(context).size.width,
+                margin: const EdgeInsets.only(left: kDefaultMargin),
                 decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade700,
+                      spreadRadius: 0.2,
+                      blurRadius: 5,
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(kDefaultCircular),
                   image: DecorationImage(
                     image: AssetImage(i),
+                    fit: BoxFit.fill,
                   ),
                 ),
               );
@@ -128,77 +217,75 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildCategories() {
     return Container(
+      width: double.infinity,
       margin: const EdgeInsets.only(
         top: defaultMargin,
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(right: 16),
-              padding: const EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(kDefaultCircular),
-                  color: primaryColor),
-              child: Text(
-                'Paket AC',
-                style: whiteTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
-              ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 70,
+            width: double.infinity,
+            child: ListView.builder(
+              physics: BouncingScrollPhysics(),
+              itemCount: navItem.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (ctx, index) {
+                return Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          currentNavItem = index;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        margin: const EdgeInsets.all(kDefaultMargin),
+                        width: 80,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: currentNavItem == index
+                              ? primaryColor
+                              : backgroundColor7,
+                          borderRadius: currentNavItem == index
+                              ? BorderRadius.circular(kDefaultCircular * 1.5)
+                              : BorderRadius.circular(kDefaultCircular),
+                          border: currentNavItem == index
+                              ? Border.all(color: primaryColor, width: 2)
+                              : null,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.shade600,
+                              spreadRadius: 0.2,
+                              blurRadius: 2,
+                              offset: const Offset(0, 1),
+                            ),
+                          ],
+                        ),
+                        duration: const Duration(milliseconds: 500),
+                        child: Center(
+                          child: Text(
+                            navItem[index],
+                            style: currentNavItem == index
+                                ? whiteTextStyle.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: semiBold,
+                                  )
+                                : primaryTextStyle.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: semiBold,
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
-            Container(
-              margin: const EdgeInsets.only(right: 16),
-              padding: const EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kDefaultCircular),
-                color: transparentColor,
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Text(
-                'Artikel',
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 16),
-              padding: const EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kDefaultCircular),
-                color: transparentColor,
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Text(
-                'Promo',
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 16),
-              padding: const EdgeInsets.all(kDefaultPadding),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kDefaultCircular),
-                color: transparentColor,
-                border: Border.all(color: Colors.grey.shade300),
-              ),
-              child: Text(
-                'Hitung PKmu',
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: medium,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+          buildTips()
+        ],
       ),
     );
   }
