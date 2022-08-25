@@ -4,7 +4,7 @@ import '../theme.dart';
 
 class CustomFormField extends StatefulWidget {
   final String? title;
-  final bool? obscureText;
+  final bool obscureText;
   final TextEditingController? controller;
   final IconData? suffixIcon;
   final double? height;
@@ -13,7 +13,7 @@ class CustomFormField extends StatefulWidget {
   const CustomFormField({
     Key? key,
     this.title,
-    this.obscureText,
+    this.obscureText = false,
     this.controller,
     this.suffixIcon,
     this.height = 40,
@@ -62,7 +62,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
                   Expanded(
                     child: TextFormField(
                       controller: widget.controller,
-                      obscureText: widget.obscureText!,
+                      obscureText: widget.obscureText,
                       decoration: InputDecoration.collapsed(
                         hintText: widget.hintText,
                         hintStyle: secondaryTextStyle.copyWith(fontSize: 14),

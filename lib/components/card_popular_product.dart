@@ -50,7 +50,7 @@ class CardPopularProduct extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${product.category!.name}',
+                  '${product.category.name}',
                   style: primaryTextStyle.copyWith(
                     fontSize: 12,
                     fontWeight: semiBold,

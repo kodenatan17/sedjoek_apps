@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     'assets/images/banner_2.png',
     'assets/images/banner_3.png',
     'assets/images/banner_4.png',
+    'assets/images/banner_5.png',
   ];
 
   final List<String> navItem = [
