@@ -21,10 +21,20 @@ import 'package:sedjoek_apps/pages/guide/syarat_ketentuan.dart';
 import 'package:sedjoek_apps/pages/profile/success_edit_page.dart';
 import 'package:sedjoek_apps/pages/promo/promo_page.dart';
 import 'package:sedjoek_apps/pages/splash_page.dart';
+import 'package:sedjoek_apps/pages/technition/home/home_page.dart';
+import 'package:sedjoek_apps/pages/technition/main_page.dart';
+import 'package:sedjoek_apps/pages/technition/notification/notification_page.dart';
+import 'package:sedjoek_apps/pages/technition/profile/profile_page.dart';
+import 'package:sedjoek_apps/pages/technition/project/project_page.dart';
 import 'package:sedjoek_apps/pages/transaction/cart_page.dart';
 import 'package:sedjoek_apps/pages/transaction/checkout_page.dart';
 import 'package:sedjoek_apps/pages/transaction/checkout_success_page.dart';
 import 'package:sedjoek_apps/pages/transaction/payment_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/home/home_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/main_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/notification/notification_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/profile/profile_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/stock/stock_page.dart';
 import 'package:sedjoek_apps/pages/wishlist/wishlist_page.dart';
 import 'package:sedjoek_apps/provider/auth_provider.dart';
 import 'package:sedjoek_apps/provider/product_provider.dart';
@@ -86,6 +96,21 @@ class MyApp extends StatelessWidget {
           '/payment-page': (context) => const PaymentPage(),
           //PROMO
           '/promo-page': (context) => const PromoPage(),
+          
+          //WAREHOUSE
+          '/warehouse/home-page' : (context) => const HomePageWarehouse(),
+          '/warehouse/notification-page' :(context) => const NotificationPageWarehouse(),
+          '/warehouse/stock-page' : (context) => const StockPageWarehouse(),
+          '/warehouse/profile-page' : (context) => const ProfilePageWarehouse(),
+          '/warehouse/' :(context) => const MainPageWarehouse(),
+
+          //TECHNITION
+          '/technition/home-page' : (context) => const HomePageTechnition(),
+          '/technition/notification-page' : (context) => const NotificationPageTechinition(),
+          '/technition/profile-page' : (context) => const ProfilePageTechnition(),
+          '/technition/project-page' : (context) => const ProjectPageTechnition(),
+          '/tehnicition/' : (context) => const MainPageTechnition(),
+        
         },
       ),
     );
