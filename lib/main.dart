@@ -36,8 +36,13 @@ import 'package:sedjoek_apps/pages/warehouse/notification/notification_page.dart
 import 'package:sedjoek_apps/pages/warehouse/profile/profile_page.dart';
 import 'package:sedjoek_apps/pages/warehouse/stock/stock_page.dart';
 import 'package:sedjoek_apps/pages/wishlist/wishlist_page.dart';
+import 'package:sedjoek_apps/provider/article_provider.dart';
 import 'package:sedjoek_apps/provider/auth_provider.dart';
+import 'package:sedjoek_apps/provider/banner_provider.dart';
+import 'package:sedjoek_apps/provider/category_provider.dart';
+import 'package:sedjoek_apps/provider/event_provider.dart';
 import 'package:sedjoek_apps/provider/product_provider.dart';
+import 'package:sedjoek_apps/provider/promo_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +62,21 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ArticleProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BannerProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CategoryProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => EventProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PromoProvider(),
         ),
       ],
       child: MaterialApp(
@@ -96,21 +116,24 @@ class MyApp extends StatelessWidget {
           '/payment-page': (context) => const PaymentPage(),
           //PROMO
           '/promo-page': (context) => const PromoPage(),
-          
+
           //WAREHOUSE
-          '/warehouse/home-page' : (context) => const HomePageWarehouse(),
-          '/warehouse/notification-page' :(context) => const NotificationPageWarehouse(),
-          '/warehouse/stock-page' : (context) => const StockPageWarehouse(),
-          '/warehouse/profile-page' : (context) => const ProfilePageWarehouse(),
-          '/warehouse/' :(context) => const MainPageWarehouse(),
+          '/warehouse/home-page': (context) => const HomePageWarehouse(),
+          '/warehouse/notification-page': (context) =>
+              const NotificationPageWarehouse(),
+          '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+          '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+          '/warehouse/': (context) => const MainPageWarehouse(),
 
           //TECHNITION
-          '/technition/home-page' : (context) => const HomePageTechnition(),
-          '/technition/notification-page' : (context) => const NotificationPageTechinition(),
-          '/technition/profile-page' : (context) => const ProfilePageTechnition(),
-          '/technition/project-page' : (context) => const ProjectPageTechnition(),
-          '/tehnicition/' : (context) => const MainPageTechnition(),
-        
+          '/technition/home-page': (context) => const HomePageTechnition(),
+          '/technition/notification-page': (context) =>
+              const NotificationPageTechinition(),
+          '/technition/profile-page': (context) =>
+              const ProfilePageTechnition(),
+          '/technition/project-page': (context) =>
+              const ProjectPageTechnition(),
+          '/tehnicition/': (context) => const MainPageTechnition(),
         },
       ),
     );

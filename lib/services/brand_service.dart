@@ -5,7 +5,7 @@ import 'package:sedjoek_apps/models/brand_model.dart';
 class BrandService {
   String baseUrl = 'https://backend.sedjoek.id/api';
 
-  Future<List<BrandModel>> getProducts() async {
+  Future<List<BrandModel>> getBrands() async {
     var url = '$baseUrl/brands';
     var headers = {'Content-Type': 'application/json'};
 

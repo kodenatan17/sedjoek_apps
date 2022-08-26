@@ -178,7 +178,7 @@ class _ProductPageState extends State<ProductPage> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/icons/header_main.png"),
+                image: AssetImage("assets/images/bg-header.png"),
                 fit: BoxFit.cover,
               ),
             ),

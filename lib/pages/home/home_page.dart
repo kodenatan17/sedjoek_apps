@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sedjoek_apps/components/card_backup.dart';
 import 'package:sedjoek_apps/components/card_popular_product.dart';
 import 'package:sedjoek_apps/components/photo_profile.dart';
+import 'package:sedjoek_apps/pages/product/product_page.dart';
 import 'package:sedjoek_apps/provider/auth_provider.dart';
 import 'package:sedjoek_apps/provider/product_provider.dart';
 import 'package:sedjoek_apps/theme.dart';
@@ -16,6 +17,8 @@ import '../../widgets/drawer.dart';
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
+
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 100.0);
 }
 
 class _HomePageState extends State<HomePage> {
@@ -39,12 +42,30 @@ class _HomePageState extends State<HomePage> {
   Widget zoomDrawer() => SafeArea(
         child: DrawerWidget(),
       );
+  final double barHeight = 50.0;
 
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight + 100),
+        child: ClipPath(
+          clipper: WaveClip(),
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  "assets/images/bg-header.png",
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: buildProfile(user),
+          ),
+        ),
+      ),
       backgroundColor: backgroundColor1,
       body: ListView(
         padding: const EdgeInsets.symmetric(
@@ -52,7 +73,6 @@ class _HomePageState extends State<HomePage> {
           vertical: defaultMargin,
         ),
         children: [
-          buildProfile(user),
           buildCardCarousel(),
           buildProductTitle(),
           // buildProduct(productProvider),
