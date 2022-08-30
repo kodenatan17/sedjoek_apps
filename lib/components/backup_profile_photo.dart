@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-
 import '../theme.dart';
 
-class PhotoProfile extends StatelessWidget {
-  final String photoURL;
+class BackupPhotoProfile extends StatelessWidget {
   final bool isVerified;
-  const PhotoProfile({
+  const BackupPhotoProfile({
     Key? key,
-    required this.photoURL,
     this.isVerified = true,
   }) : super(key: key);
 
@@ -17,24 +13,14 @@ class PhotoProfile extends StatelessWidget {
     return Container(
       width: 60,
       height: 60,
-      decoration: photoURL == null
-          ? BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  image: AssetImage(
-                    'assets/images/photo.png',
-                  ),
-                  fit: BoxFit.cover),
-            )
-          : BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: NetworkImage(
-                  photoURL,
-                ),
-                fit: BoxFit.cover,
-              ),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: DecorationImage(
+            image: AssetImage(
+              'assets/images/photo.png',
             ),
+            fit: BoxFit.cover),
+      ),
       child: Align(
         alignment: Alignment.topRight,
         child: Container(

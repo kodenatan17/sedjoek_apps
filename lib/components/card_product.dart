@@ -7,6 +7,7 @@ class CardProduct extends StatelessWidget {
   final String namaProduct;
   final String descProduct;
   final String hargaProduct;
+  final String bgProduct;
   final VoidCallback onTap;
 
   const CardProduct({
@@ -14,6 +15,7 @@ class CardProduct extends StatelessWidget {
     required this.namaProduct,
     required this.descProduct,
     required this.hargaProduct,
+    required this.bgProduct,
     required this.onTap,
   }) : super(key: key);
 
@@ -34,10 +36,22 @@ class CardProduct extends StatelessWidget {
               child: Container(
                 width: 160,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(kDefaultMargin)),
-                child: Lottie.asset(
-                  'assets/lottie/ac.json',
-                  fit: BoxFit.fill,
+                  borderRadius: BorderRadius.circular(kDefaultMargin),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      bgProduct,
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: kDefaultMargin * 2),
+                    child: Lottie.asset(
+                      'assets/lottie/ac.json',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -122,6 +122,7 @@ class _ProductPageState extends State<ProductPage> {
             onTap: () {
               Navigator.pushNamed(context, '/product-detail');
             },
+            bgProduct: 'assets/products/sharp.png',
             namaProduct: 'Sharp AH-AP5UHL',
             descProduct:
                 'AC split low daya listrik 330 W Teknologi Low Wattage',
@@ -131,6 +132,7 @@ class _ProductPageState extends State<ProductPage> {
             onTap: () {
               Navigator.pushNamed(context, '/product-detail');
             },
+            bgProduct: 'assets/products/lg.png',
             namaProduct: 'LG H05TN4 New Hercules',
             descProduct:
                 'AC split low daya listrik 370 W Teknologi Turbo Cooling',
@@ -140,6 +142,7 @@ class _ProductPageState extends State<ProductPage> {
             onTap: () {
               Navigator.pushNamed(context, '/product-detail');
             },
+            bgProduct: 'assets/products/panasonic.png',
             namaProduct: 'Panasonic CS/CU-LN5WKJ',
             descProduct:
                 'AC split low daya listrik 369 W dengan Mode Powerfull',
@@ -149,6 +152,7 @@ class _ProductPageState extends State<ProductPage> {
             onTap: () {
               Navigator.pushNamed(context, '/product-detail');
             },
+            bgProduct: 'assets/products/gree.png',
             namaProduct: 'Gree GWC-05C3E',
             descProduct:
                 'AC split low daya listrik 389 W Teknologi Pengingat Pintar',
@@ -158,6 +162,7 @@ class _ProductPageState extends State<ProductPage> {
             onTap: (){
               Navigator.pushNamed(context, '/product-detail');
             },
+            bgProduct: 'assets/products/panasonic.png',
             namaProduct: 'Panasonic CS/CU-LN5WKJ',
             descProduct:
                 'AC split low daya listrik 369 W dengan Mode Powerfull',
@@ -172,9 +177,8 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + 100),
+        preferredSize: const Size.fromHeight(kToolbarHeight + 75),
         child: ClipPath(
-          clipper: WaveClip(),
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
@@ -212,24 +216,24 @@ class _ProductPageState extends State<ProductPage> {
   }
 }
 
-class WaveClip extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = new Path();
-    final lowPoint = size.height - 30;
-    final highPoint = size.height - 40;
+// class WaveClip extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     Path path = new Path();
+//     final lowPoint = size.height - 30;
+//     final highPoint = size.height - 40;
 
-    path.lineTo(0, size.height);
-    path.quadraticBezierTo(size.width / 4, highPoint, size.width / 2, lowPoint);
-    path.quadraticBezierTo(
-        3 / 4 * size.width, size.height, size.width, lowPoint);
-    path.lineTo(size.width, 0);
+//     path.lineTo(0, size.height);
+//     path.quadraticBezierTo(size.width / 4, highPoint, size.width / 2, lowPoint);
+//     path.quadraticBezierTo(
+//         3 / 4 * size.width, size.height, size.width, lowPoint);
+//     path.lineTo(size.width, 0);
 
-    return path;
-  }
+//     return path;
+//   }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) {
+//     return false;
+//   }
+// }

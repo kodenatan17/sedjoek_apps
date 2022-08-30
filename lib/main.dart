@@ -43,6 +43,7 @@ import 'package:sedjoek_apps/provider/category_provider.dart';
 import 'package:sedjoek_apps/provider/event_provider.dart';
 import 'package:sedjoek_apps/provider/product_provider.dart';
 import 'package:sedjoek_apps/provider/promo_provider.dart';
+import 'package:sedjoek_apps/provider/user_detail_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -54,98 +55,102 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => AuthProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ProductProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ArticleProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => BannerProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CategoryProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => EventProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => PromoProvider(),
-        ),
-      ],
-      child: MaterialApp(
-        title: 'Sedjoek Apps',
-        debugShowCheckedModeBanner: false,
-        routes: {
-          //AUTHENTICATION
-          '/': (context) => SplashPage(),
-          '/onboarding': (context) => OnboardingPage(),
-          '/sign-in': (context) => SignInPage(),
-          '/sign-up': (context) => SignUpPage(),
-          '/success-sign-up': (context) => SuccessSignUp(),
-          '/home': (context) => HomePage(),
-          '/main': (context) => const MainPage(),
-          //CHAT
-          '/chat': (context) => const ChatPage(),
-          '/chat-detail': (context) => const DetailChatPage(),
-          //PROFILE
-          '/profile': (context) => ProfilePage(),
-          '/profile-edit': (context) => const ProfileEditPage(),
-          '/success-edit': (context) => const SuccessEditPage(),
-          //GUIDE
-          '/about-us': (context) => const AboutUsPage(),
-          '/syarat-ketentuan': (context) => const SyaratKetentuanPage(),
-          '/kebijakan-privasi': (context) => const KebijakanPrivasiPage(),
-          '/help': (context) => const HelpPage(),
-          '/notification': (context) => const NotificationPage(),
-          //WISHLIST
-          '/wishlist': (context) => const WishlistPage(),
-          //PRODUCT
-          '/product': (context) => const ProductPage(),
-          '/product-detail': (context) => const DetailProductPage(),
-          //TRANSACTION
-          '/cart-page': (context) => const CartPage(),
-          '/checkout-page': (context) => const CheckoutPage(),
-          '/checkout-success': (context) => const CheckoutSuccessPage(),
-          '/payment-page': (context) => const PaymentPage(),
-          //PROMO
-          '/promo-page': (context) => const PromoPage(),
-
-          //WAREHOUSE
-          '/warehouse/home-page': (context) => const HomePageWarehouse(),
-          '/warehouse/notification-page': (context) =>
-              const NotificationPageWarehouse(),
-          '/warehouse/stock-page': (context) => const StockPageWarehouse(),
-          '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
-          '/warehouse/': (context) => const MainPageWarehouse(),
-
-          //TECHNITION
-          '/technition/home-page': (context) => const HomePageTechnition(),
-          '/technition/notification-page': (context) =>
-              const NotificationPageTechinition(),
-          '/technition/profile-page': (context) =>
-              const ProfilePageTechnition(),
-          '/technition/project-page': (context) =>
-              const ProjectPageTechnition(),
-          '/tehnicition/': (context) => const MainPageTechnition(),
-        },
-      ),
-    );
-  }
-
   // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     title: 'Flutter Demo',
-  //     theme: ThemeData(
-  //       primarySwatch: Colors.blue,
+  //   return MultiProvider(
+  //     providers: [
+  //       ChangeNotifierProvider(
+  //         create: (context) => AuthProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => ProductProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => ArticleProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => BannerProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => CategoryProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => EventProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => PromoProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => UserDetailProvider(),
+  //       ),
+  //     ],
+  //     child: MaterialApp(
+  //       title: 'Sedjoek Apps',
+  //       debugShowCheckedModeBanner: false,
+  //       routes: {
+  //         //AUTHENTICATION
+  //         '/': (context) => SplashPage(),
+  //         '/onboarding': (context) => OnboardingPage(),
+  //         '/sign-in': (context) => SignInPage(),
+  //         '/sign-up': (context) => SignUpPage(),
+  //         '/success-sign-up': (context) => SuccessSignUp(),
+  //         '/home': (context) => HomePage(),
+  //         '/main': (context) => const MainPage(),
+  //         //CHAT
+  //         '/chat': (context) => const ChatPage(),
+  //         '/chat-detail': (context) => const DetailChatPage(),
+  //         //PROFILE
+  //         '/profile': (context) => ProfilePage(),
+  //         '/profile-edit': (context) => const ProfileEditPage(),
+  //         '/success-edit': (context) => const SuccessEditPage(),
+  //         //GUIDE
+  //         '/about-us': (context) => const AboutUsPage(),
+  //         '/syarat-ketentuan': (context) => const SyaratKetentuanPage(),
+  //         '/kebijakan-privasi': (context) => const KebijakanPrivasiPage(),
+  //         '/help': (context) => const HelpPage(),
+  //         '/notification': (context) => const NotificationPage(),
+  //         //WISHLIST
+  //         '/wishlist': (context) => const WishlistPage(),
+  //         //PRODUCT
+  //         '/product': (context) => const ProductPage(),
+  //         '/product-detail': (context) => const DetailProductPage(),
+  //         //TRANSACTION
+  //         '/cart-page': (context) => const CartPage(),
+  //         '/checkout-page': (context) => const CheckoutPage(),
+  //         '/checkout-success': (context) => const CheckoutSuccessPage(),
+  //         '/payment-page': (context) => const PaymentPage(),
+  //         //PROMO
+  //         '/promo-page': (context) => const PromoPage(),
+
+  //         //WAREHOUSE
+  //         '/warehouse/home-page': (context) => const HomePageWarehouse(),
+  //         '/warehouse/notification-page': (context) =>
+  //             const NotificationPageWarehouse(),
+  //         '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+  //         '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+  //         '/warehouse/': (context) => const MainPageWarehouse(),
+
+  //         //TECHNITION
+  //         '/technition/home-page': (context) => const HomePageTechnition(),
+  //         '/technition/notification-page': (context) =>
+  //             const NotificationPageTechinition(),
+  //         '/technition/profile-page': (context) =>
+  //             const ProfilePageTechnition(),
+  //         '/technition/project-page': (context) =>
+  //             const ProjectPageTechnition(),
+  //         '/tehnicition/': (context) => const MainPageTechnition(),
+  //       },
   //     ),
-  //     home:NotificationPage(),
   //   );
   // }
+
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home:ProjectPageTechnition(),
+      
+    );
+  }
 }

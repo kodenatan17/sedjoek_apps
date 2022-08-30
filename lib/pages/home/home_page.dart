@@ -50,16 +50,15 @@ class _HomePageState extends State<HomePage> {
     ProductProvider productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + 100),
+        preferredSize: const Size.fromHeight(kToolbarHeight + 70),
         child: ClipPath(
-          clipper: WaveClip(),
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
                   "assets/images/bg-header.png",
                 ),
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               ),
             ),
             child: buildProfile(user),
@@ -70,7 +69,6 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         padding: const EdgeInsets.symmetric(
           horizontal: kDefaultMargin * 1.5,
-          vertical: defaultMargin,
         ),
         children: [
           buildCardCarousel(),
@@ -155,8 +153,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildProfile(UserModel user) {
     return Container(
-      margin: const EdgeInsets.only(top: defaultMargin),
+      margin: const EdgeInsets.only(top: defaultMargin, left: defaultMargin),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
             onTap: () => ZoomDrawer.of(context)?.toggle(),
@@ -199,9 +198,6 @@ class _HomePageState extends State<HomePage> {
     return Container(
       width: double.infinity,
       height: 150,
-      margin: const EdgeInsets.only(
-        top: kDefaultMargin * 1.5,
-      ),
       child: CarouselSlider(
         options: CarouselOptions(
           viewportFraction: 0.9,
@@ -315,6 +311,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: const EdgeInsets.only(
         top: defaultMargin * .5,
+        right: defaultMargin * .5,
       ),
       child: Column(
         //tips card => info, tips, promo
@@ -333,3 +330,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+// class WaveClip extends CustomClipper<Path> {
+//   @override
+//   Path getClip(Size size) {
+//     Path path = new Path();
+//     final lowPoint = size.height - 30;
+//     final highPoint = size.height - 40;
+
+//     path.lineTo(0, size.height);
+//     path.quadraticBezierTo(size.width / 6, highPoint, size.width / 2, lowPoint);
+//     path.quadraticBezierTo(
+//         3 / 4 * size.width, size.height, size.width, lowPoint);
+//     path.lineTo(size.width, 0);
+
+//     return path;
+//   }
+
+//   @override
+//   bool shouldReclip(CustomClipper<Path> oldClipper) {
+//     return false;
+//   }
+// }

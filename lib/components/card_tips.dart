@@ -14,13 +14,12 @@ class CustomCardTips extends StatelessWidget {
       width: double.infinity,
       height: 110,
       margin: const EdgeInsets.only(bottom: defaultMargin * .5),
-      padding: const EdgeInsets.symmetric(vertical : kDefaultPadding),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Colors.grey.shade400,
             spreadRadius: 1,
-            blurRadius: 15,
+            blurRadius: 10,
             offset: const Offset(0, 1)
           )
         ],

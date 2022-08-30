@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/models/event_model.dart';
 import 'package:sedjoek_apps/services/event_service.dart';
