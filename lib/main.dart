@@ -129,15 +129,15 @@ class MyApp extends StatelessWidget {
   //         '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
   //         '/warehouse/': (context) => const MainPageWarehouse(),
 
-  //         //TECHNITION
-  //         '/technition/home-page': (context) => const HomePageTechnition(),
-  //         '/technition/notification-page': (context) =>
-  //             const NotificationPageTechinition(),
-  //         '/technition/profile-page': (context) =>
-  //             const ProfilePageTechnition(),
-  //         '/technition/project-page': (context) =>
-  //             const ProjectPageTechnition(),
-  //         '/tehnicition/': (context) => const MainPageTechnition(),
+  //TECHNITION
+  // '/technition/home-page': (context) => const HomePageTechnition(),
+  // '/technition/notification-page': (context) =>
+  //     const NotificationPageTechinition(),
+  // '/technition/profile-page': (context) =>
+  //     const ProfilePageTechnition(),
+  // '/technition/project-page': (context) =>
+  //     const ProjectPageTechnition(),
+  // '/tehnicition/': (context) => const MainPageTechnition(),
   //       },
   //     ),
   //   );
@@ -145,12 +145,20 @@ class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home:ProjectPageTechnition(),
-      
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        routes: {
+          //TECHNITION
+          '/technition/home-page': (context) => const HomePageTechnition(),
+          '/technition/notification-page': (context) =>
+              const NotificationPageTechinition(),
+          '/technition/profile-page': (context) =>
+              const ProfilePageTechnition(),
+          '/technition/project-page': (context) =>
+              const ProjectPageTechnition(),
+          '/': (context) => const MainPageTechnition(),
+        });
   }
 }

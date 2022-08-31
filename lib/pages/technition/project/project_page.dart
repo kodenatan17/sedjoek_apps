@@ -44,6 +44,7 @@ class ProjectPageTechnition extends StatelessWidget {
           ),
         ),
         body: const TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: [
             SurveyPage(),
             InstallationPage(),

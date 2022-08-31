@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
-class NotaModal extends StatelessWidget {
-  const NotaModal({
+class ModalNota extends StatelessWidget {
+  const ModalNota({
     Key? key,
     required this.codeTransaction,
     required this.nameCustomer,

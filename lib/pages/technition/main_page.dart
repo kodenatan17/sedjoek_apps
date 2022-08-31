@@ -122,13 +122,10 @@ class _MainPageStateTechnition extends State<MainPageTechnition> {
           return const ChatPageTechnition();
           break;
         case 2:
-          return const NotificationPageTechinition();
+          return const ProjectPageTechnition();
           break;
         case 3:
           return ProfilePageTechnition();
-          break;
-        case 4:
-          return ProjectPageTechnition();
           break;
         default:
           return HomePageTechnition();
