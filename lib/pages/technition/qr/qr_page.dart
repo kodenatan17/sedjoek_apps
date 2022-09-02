@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:sedjoek_apps/components/technition/card_task.dart';
 
 import '../../../components/backup_profile_photo.dart';
-import '../../../components/photo_profile.dart';
 import '../../../theme.dart';
 
-class HomePageTechnition extends StatelessWidget {
-  const HomePageTechnition({Key? key}) : super(key: key);
+class QrPageTechniition extends StatelessWidget {
+  const QrPageTechniition({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -22,23 +21,31 @@ class HomePageTechnition extends StatelessWidget {
                 fit: BoxFit.fill,
               ),
             ),
-            child: buildProfile(),
+            child: buildProfile(context),
           ),
         ),
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(kDefaultPadding),
-        child: buildDashboard(),
       ),
     );
   }
 
-  Widget buildProfile() {
+  Widget buildProfile(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: defaultMargin, left: defaultMargin),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+            ),
+            color: Colors.white,
+          ),
+          SizedBox(
+            width: defaultMargin,
+          ),
           BackupPhotoProfile(
             isVerified: true,
           ),
@@ -66,39 +73,6 @@ class HomePageTechnition extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildDashboard() {
-    return Container(
-      padding: const EdgeInsets.all(kDefaultMargin),
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: kDefaultMargin * 2,
-        mainAxisSpacing: kDefaultMargin * 2,
-        children: [
-          CardTask(
-            titleCard: 'Maintenance',
-            countCard: '4',
-            typeCard: "notification",
-          ),
-          CardTask(
-            titleCard: 'Survey',
-            countCard: '2',
-            typeCard: 'sourvey',
-          ),
-          CardTask(
-            titleCard: 'Troubleshoot',
-            countCard: '3',
-            typeCard: 'material',
-          ),
-          CardTask(
-            titleCard: 'Installation',
-            countCard: '3',
-            typeCard: 'installation',
           ),
         ],
       ),

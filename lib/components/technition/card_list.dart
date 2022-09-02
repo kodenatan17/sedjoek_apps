@@ -74,10 +74,12 @@ class CardList extends StatelessWidget {
       },
       child: Slidable(
         startActionPane: ActionPane(
-          motion: const StretchMotion(),
+          motion: const BehindMotion(),
           children: [
             SlidableAction(
-              onPressed: ((context) {}),
+              onPressed: ((context) {
+
+              }),
               icon: Icons.dataset,
               backgroundColor: cardInfo,
             ),
@@ -91,18 +93,18 @@ class CardList extends StatelessWidget {
           ],
         ),
         endActionPane: ActionPane(
-          motion: const StretchMotion(),
+          motion: const BehindMotion(),
           children: [
             SlidableAction(
               onPressed: ((context) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => statusList == 'Sourvey'
-                        ? ModalSourvey()
+                    builder: (context) => statusList == 'Survey'
+                        ? const ModalSourvey()
                         : statusList == 'Installation'
-                            ? ModalInstallation()
-                            : ModalFinish(),
+                            ? const ModalInstallation()
+                            : const ModalFinish(),
                   ),
                 );
               }),

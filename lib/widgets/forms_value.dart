@@ -2,28 +2,26 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
-class CustomFormField extends StatefulWidget {
+class CustomFormFieldValue extends StatefulWidget {
   final String? title;
   final bool obscureText;
   final TextEditingController? controller;
   final IconData? suffixIcon;
   final double? height;
   final String? hintText;
-  final TextEditingController? textController;
   final bool readOnly;
   final int? minLines;
   final int? maxLines;
   final TextInputType? textInputType;
   final void Function(String)? onChanged;
 
-  CustomFormField({
+  CustomFormFieldValue({
     Key? key,
     this.title,
     this.obscureText = false,
     this.controller,
     this.suffixIcon,
     this.height = 40,
-    this.textController,
     this.readOnly = false,
     this.minLines = 1,
     this.maxLines = 1,
@@ -33,10 +31,10 @@ class CustomFormField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CustomFormField> createState() => _CustomFormFieldState();
+  State<CustomFormFieldValue> createState() => _CustomFormFieldValueState();
 }
 
-class _CustomFormFieldState extends State<CustomFormField> {
+class _CustomFormFieldValueState extends State<CustomFormFieldValue> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -75,15 +73,14 @@ class _CustomFormFieldState extends State<CustomFormField> {
                     width: kDefaultPadding,
                   ),
                   Expanded(
-                    child: TextFormField(
-                      keyboardType: widget.textInputType,
+                    child: TextField(
                       minLines: widget.minLines,
                       maxLines: widget.maxLines,
                       readOnly: widget.readOnly,
                       controller: widget.controller,
                       obscureText: widget.obscureText,
                       decoration: InputDecoration.collapsed(
-                        hintText: widget.hintText,
+                        hintText: widget.controller?.text,
                         hintStyle: secondaryTextStyle.copyWith(fontSize: 14),
                       ),
                     ),

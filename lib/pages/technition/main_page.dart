@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/pages/technition/project/project_page.dart';
+import 'package:sedjoek_apps/pages/technition/qr/qr_page.dart';
 
 import '../../theme.dart';
 import 'chat/chat_page.dart';
@@ -28,7 +29,12 @@ class _MainPageStateTechnition extends State<MainPageTechnition> {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/product');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const QrPageTechniition(),
+            ),
+          );
         },
       );
     }
@@ -66,13 +72,13 @@ class _MainPageStateTechnition extends State<MainPageTechnition> {
                 ),
                 label: '',
               ),
-              
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                      top: kDefaultMargin,
-                      bottom: kDefaultMargin,
-                      right: defaultMargin),
+                    top: kDefaultMargin,
+                    bottom: kDefaultMargin,
+                    right: defaultMargin,
+                  ),
                   child: Image.asset(
                     "assets/icons/icon_chat.png",
                     width: 20,
@@ -84,9 +90,10 @@ class _MainPageStateTechnition extends State<MainPageTechnition> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                      top: kDefaultMargin,
-                      bottom: kDefaultMargin,
-                      left: defaultMargin),
+                    top: kDefaultMargin,
+                    bottom: kDefaultMargin,
+                    left: defaultMargin,
+                  ),
                   child: Image.asset(
                     "assets/icons/icon_fav.png",
                     width: 20,
@@ -98,7 +105,9 @@ class _MainPageStateTechnition extends State<MainPageTechnition> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                      top: kDefaultMargin, bottom: kDefaultMargin),
+                    top: kDefaultMargin,
+                    bottom: kDefaultMargin,
+                  ),
                   child: Image.asset(
                     "assets/icons/icon_profile.png",
                     width: 20,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sedjoek_apps/components/nota_modal.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sedjoek_apps/theme.dart';
 
 class CardTask extends StatelessWidget {
@@ -15,8 +15,7 @@ class CardTask extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-      },
+      onTap: () {},
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -31,39 +30,47 @@ class CardTask extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
           children: [
-            Container(
-              padding: const EdgeInsets.all(defaultMargin),
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  typeCard == 'notification'
-                      ? Icon(
-                          Icons.notifications_active,
-                          size: 40,
-                          color: cardNotification,
-                        )
-                      : typeCard == 'sourvey'
-                          ? Icon(
-                              Icons.view_carousel,
-                              size: 40,
-                              color: cardSourvey,
-                            )
-                          : typeCard == 'material'
-                              ? Icon(
-                                  Icons.qr_code,
-                                  size: 40,
-                                  color: cardMaterial,
-                                )
-                              : Icon(
-                                  Icons.task,
-                                  size: 40,
-                                  color: cardInstallation,
-                                ),
-                  Text(
+            typeCard == 'notification'
+                ? Lottie.asset(
+                    'assets/lottie/maintenance.json',
+                    fit: BoxFit.fill,
+                  )
+                : typeCard == 'sourvey'
+                    ? Lottie.asset(
+                        'assets/lottie/survey.json',
+                        fit: BoxFit.fill,
+                      )
+                    : typeCard == 'material'
+                        ? Lottie.asset(
+                            'assets/lottie/installation.json',
+                            fit: BoxFit.fill,
+                          )
+                        : Lottie.asset(
+                            'assets/lottie/troubleshoot.json',
+                            fit: BoxFit.fill,
+                          ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  alignment: Alignment.topLeft,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: defaultMargin * .5,
+                  ),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: typeCard == 'notification'
+                        ? cardNotification
+                        : typeCard == 'sourvey'
+                            ? cardSourvey
+                            : typeCard == 'material'
+                                ? cardMaterial
+                                : cardInstallation,
+                  ),
+                  child: Text(
                     countCard,
                     style: TextStyle(
                       fontSize: 40,
@@ -77,35 +84,35 @@ class CardTask extends StatelessWidget {
                                   : cardInstallation,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 50,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: typeCard == 'notification'
+                        ? cardNotification
+                        : typeCard == 'sourvey'
+                            ? cardSourvey
+                            : typeCard == 'material'
+                                ? cardMaterial
+                                : cardInstallation,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(defaultMargin),
+                      bottomLeft: Radius.circular(defaultMargin),
+                    ),
+                  ),
+                  child: Text(
+                    titleCard,
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 20,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
             ),
-            Container(
-              alignment: Alignment.center,
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: typeCard == 'notification'
-                    ? cardNotification
-                    : typeCard == 'sourvey'
-                        ? cardSourvey
-                        : typeCard == 'material'
-                            ? cardMaterial
-                            : cardInstallation,
-                borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(defaultMargin),
-                  bottomLeft: Radius.circular(defaultMargin),
-                ),
-              ),
-              child: Text(
-                titleCard,
-                style: whiteTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: semiBold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            )
           ],
         ),
       ),

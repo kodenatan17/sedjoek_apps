@@ -26,6 +26,7 @@ import 'package:sedjoek_apps/pages/technition/main_page.dart';
 import 'package:sedjoek_apps/pages/technition/notification/notification_page.dart';
 import 'package:sedjoek_apps/pages/technition/profile/profile_page.dart';
 import 'package:sedjoek_apps/pages/technition/project/project_page.dart';
+import 'package:sedjoek_apps/pages/technition/qr/qr_page.dart';
 import 'package:sedjoek_apps/pages/transaction/cart_page.dart';
 import 'package:sedjoek_apps/pages/transaction/checkout_page.dart';
 import 'package:sedjoek_apps/pages/transaction/checkout_success_page.dart';
@@ -137,7 +138,9 @@ class MyApp extends StatelessWidget {
   //     const ProfilePageTechnition(),
   // '/technition/project-page': (context) =>
   //     const ProjectPageTechnition(),
-  // '/tehnicition/': (context) => const MainPageTechnition(),
+  // '/technition/': (context) => const MainPageTechnition(),
+  // '/technition/qr-page' : (context) =>
+  //     const QrPageTehnicition(),
   //       },
   //     ),
   //   );
@@ -158,6 +161,7 @@ class MyApp extends StatelessWidget {
               const ProfilePageTechnition(),
           '/technition/project-page': (context) =>
               const ProjectPageTechnition(),
+          '/technition/qr-page': (context) => const QrPageTechniition(),
           '/': (context) => const MainPageTechnition(),
         });
   }
