@@ -48,134 +48,129 @@ class CardList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ModalNota(
-              codeTransaction: codeTransaction,
-              nameCustomer: nameCustomer,
-              hpCustomer: hpCustomer,
-              addressCustomer: addressCustomer,
-              totalPrice: totalPrice,
-              shippingPrice: shippingPrice,
-              additionalPrice: additionalPrice,
-              productsType: productsType,
-              productsName: productsName,
-              periodeTransaction: periodeTransaction,
-              startTransaction: startTransaction,
-              endTransaction: endTransaction,
-              couponMode: couponMode,
-              statusTransaction: statusTransaction,
-            ),
-          ),
-        );
-      },
-      child: Slidable(
-        startActionPane: ActionPane(
-          motion: const BehindMotion(),
-          children: [
-            SlidableAction(
-              onPressed: ((context) {
-
-              }),
-              icon: Icons.dataset,
-              backgroundColor: cardInfo,
-            ),
-            SlidableAction(
-              onPressed: ((context) {
-                //onaction
-              }),
-              icon: Icons.message,
-              backgroundColor: cardMaterial,
-            ),
-          ],
-        ),
-        endActionPane: ActionPane(
-          motion: const BehindMotion(),
-          children: [
-            SlidableAction(
-              onPressed: ((context) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => statusList == 'Survey'
-                        ? const ModalSourvey()
-                        : statusList == 'Installation'
-                            ? const ModalInstallation()
-                            : const ModalFinish(),
-                  ),
-                );
-              }),
-              icon: Icons.location_on,
-              backgroundColor: cardInfo,
-            ),
-          ],
-        ),
-        child: Container(
-          height: 100,
-          width: double.maxFinite,
-          child: Card(
-            elevation: 5,
-            child: ClipPath(
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      color: statusList == 'Survey'
-                          ? cardSourvey
-                          : statusList == 'Installation'
-                              ? cardInstallation
-                              : primaryColor,
-                      width: 10,
-                    ),
+    return Slidable(
+      startActionPane: ActionPane(
+        motion: const BehindMotion(),
+        children: [
+          SlidableAction(
+            onPressed: ((context) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ModalNota(
+                    codeTransaction: codeTransaction,
+                    nameCustomer: nameCustomer,
+                    hpCustomer: hpCustomer,
+                    addressCustomer: addressCustomer,
+                    totalPrice: totalPrice,
+                    shippingPrice: shippingPrice,
+                    additionalPrice: additionalPrice,
+                    productsType: productsType,
+                    productsName: productsName,
+                    periodeTransaction: periodeTransaction,
+                    startTransaction: startTransaction,
+                    endTransaction: endTransaction,
+                    couponMode: couponMode,
+                    statusTransaction: statusTransaction,
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      customerList,
-                      style: priceTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Spacer(),
-                    Text(
-                      addressList,
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      statusList,
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 12,
-                        fontWeight: medium,
-                      ),
-                      textAlign: TextAlign.right,
-                    ),
-                    SizedBox(
-                      width: 20,
-                    )
-                  ],
+              );
+            }),
+            icon: Icons.dataset,
+            backgroundColor: cardInfo,
+          ),
+          SlidableAction(
+            onPressed: ((context) {
+              //onaction
+            }),
+            icon: Icons.message,
+            backgroundColor: cardMaterial,
+          ),
+        ],
+      ),
+      endActionPane: ActionPane(
+        motion: const BehindMotion(),
+        children: [
+          SlidableAction(
+            onPressed: ((context) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => statusList == 'Survey'
+                      ? const ModalSourvey()
+                      : statusList == 'Installation'
+                          ? const ModalInstallation()
+                          : const ModalFinish(),
+                ),
+              );
+            }),
+            icon: Icons.location_on,
+            backgroundColor: cardInfo,
+          ),
+        ],
+      ),
+      child: Container(
+        height: 100,
+        width: double.maxFinite,
+        child: Card(
+          elevation: 5,
+          child: ClipPath(
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                border: Border(
+                  left: BorderSide(
+                    color: statusList == 'Survey'
+                        ? cardSourvey
+                        : statusList == 'Installation'
+                            ? cardInstallation
+                            : primaryColor,
+                    width: 10,
+                  ),
                 ),
               ),
-              clipper: ShapeBorderClipper(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    kDefaultCircular,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    customerList,
+                    style: priceTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semiBold,
+                    ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Spacer(),
+                  Text(
+                    addressList,
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    statusList,
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 12,
+                      fontWeight: medium,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  )
+                ],
+              ),
+            ),
+            clipper: ShapeBorderClipper(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  kDefaultCircular,
                 ),
               ),
             ),

@@ -55,7 +55,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
+  // @override
   // Widget build(BuildContext context) {
   //   return MultiProvider(
   //     providers: [
@@ -122,25 +122,24 @@ class MyApp extends StatelessWidget {
   //         //PROMO
   //         '/promo-page': (context) => const PromoPage(),
 
-  //         //WAREHOUSE
-  //         '/warehouse/home-page': (context) => const HomePageWarehouse(),
-  //         '/warehouse/notification-page': (context) =>
-  //             const NotificationPageWarehouse(),
-  //         '/warehouse/stock-page': (context) => const StockPageWarehouse(),
-  //         '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
-  //         '/warehouse/': (context) => const MainPageWarehouse(),
+  // //WAREHOUSE
+  // '/warehouse/home-page': (context) => const HomePageWarehouse(),
+  // '/warehouse/notification-page': (context) =>
+  //     const NotificationPageWarehouse(),
+  // '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+  // '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+  // '/warehouse/': (context) => const MainPageWarehouse(),
 
-  //TECHNITION
-  // '/technition/home-page': (context) => const HomePageTechnition(),
-  // '/technition/notification-page': (context) =>
-  //     const NotificationPageTechinition(),
-  // '/technition/profile-page': (context) =>
-  //     const ProfilePageTechnition(),
-  // '/technition/project-page': (context) =>
-  //     const ProjectPageTechnition(),
-  // '/technition/': (context) => const MainPageTechnition(),
-  // '/technition/qr-page' : (context) =>
-  //     const QrPageTehnicition(),
+  //         // TECHNITION
+  //         '/technition/home-page': (context) => const HomePageTechnition(),
+  //         '/technition/notification-page': (context) =>
+  //             const NotificationPageTechinition(),
+  //         '/technition/profile-page': (context) =>
+  //             const ProfilePageTechnition(),
+  //         '/technition/project-page': (context) =>
+  //             const ProjectPageTechnition(),
+  //         '/technition/': (context) => const MainPageTechnition(),
+  //         '/technition/qr-page': (context) => const QrPageTechnition(),
   //       },
   //     ),
   //   );
@@ -153,16 +152,13 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         routes: {
-          //TECHNITION
-          '/technition/home-page': (context) => const HomePageTechnition(),
-          '/technition/notification-page': (context) =>
-              const NotificationPageTechinition(),
-          '/technition/profile-page': (context) =>
-              const ProfilePageTechnition(),
-          '/technition/project-page': (context) =>
-              const ProjectPageTechnition(),
-          '/technition/qr-page': (context) => const QrPageTechniition(),
-          '/': (context) => const MainPageTechnition(),
+          //WAREHOUSE
+          '/warehouse/home-page': (context) => const HomePageWarehouse(),
+          '/warehouse/notification-page': (context) =>
+              const NotificationPageWarehouse(),
+          '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+          '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+          '/': (context) => const MainPageWarehouse(),
         });
   }
 }

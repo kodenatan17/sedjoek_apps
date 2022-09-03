@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sedjoek_apps/components/technition/photo_forms.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
 import 'package:sedjoek_apps/widgets/forms_value.dart';
 
@@ -54,204 +55,25 @@ class _ModalInstallationState extends State<ModalInstallation> {
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Lokasi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Lokasi',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Unit Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Unit Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Indoor Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Indoor Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Outdoor Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Outdoor Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Unit AC Menyala',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Unit AC Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
           ],
         ),
@@ -336,204 +158,25 @@ class _ModalInstallationState extends State<ModalInstallation> {
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Lokasi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Lokasi',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Unit Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Unit Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Indoor Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Indoor Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Outdoor Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Outdoor Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Unit AC Menyala',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Unit AC Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
             const Divider(
               height: kDefaultPadding,

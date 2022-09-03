@@ -343,7 +343,10 @@ class ModalNota extends StatelessWidget {
                 alignment: FractionalOffset.bottomCenter,
                 child: MaterialButton(
                   minWidth: width,
-                  onPressed: () {},
+                  onPressed: () {
+                    // final pdfFile = await PdfInvoiceApi.generate(invoice);
+                    // PdfApi.openFile(pdfFile);
+                  },
                   color: primaryColor,
                   child: const Text(
                     "PRINT NOTA PRODUKSI",

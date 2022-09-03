@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../components/backup_profile_photo.dart';
 import '../../../theme.dart';
 
-class QrPageTechniition extends StatelessWidget {
-  const QrPageTechniition({Key? key}) : super(key: key);
+class QrPageTechnition extends StatelessWidget {
+  const QrPageTechnition({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

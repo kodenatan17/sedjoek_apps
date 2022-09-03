@@ -103,7 +103,7 @@ class _MainPageWarehouseState extends State<MainPageWarehouse> {
                   child: Image.asset(
                     "assets/icons/icon_profile.png",
                     width: 20,
-                    color: currentIndex == 0 ? isActive : unActive,
+                    color: currentIndex == 3 ? isActive : unActive,
                   ),
                 ),
                 label: '',

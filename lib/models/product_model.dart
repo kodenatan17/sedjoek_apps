@@ -1,6 +1,7 @@
 import 'package:sedjoek_apps/models/brand_model.dart';
 import 'package:sedjoek_apps/models/category_model.dart';
 import 'package:sedjoek_apps/models/gallery_model.dart';
+import 'package:sedjoek_apps/models/stock_model.dart';
 
 class ProductModel {
   int? id;
@@ -10,8 +11,7 @@ class ProductModel {
   String? tags;
   late CategoryModel category;
   late BrandModel brand;
-  DateTime? createdAt;
-  DateTime? updateAt;
+  late StockModel stock;
   late List<GalleryModel> galleries;
 
   ProductModel({
@@ -21,9 +21,8 @@ class ProductModel {
     required this.description,
     required this.tags,
     required this.category,
+    required this.stock,
     required this.brand,
-    required this.createdAt,
-    required this.updateAt,
     required this.galleries,
   });
 
@@ -34,12 +33,11 @@ class ProductModel {
     description = json['description'];
     tags = json['tags'];
     brand = BrandModel.fromJson(json['brand']);
+    stock = StockModel.fromJson(json['stock']);
     category = CategoryModel.fromJson(json['category']);
     galleries = json['galleries']
         .map<GalleryModel>((gallery) => GalleryModel.fromJson(gallery))
         .toList();
-    createdAt = DateTime.parse(json['created_at']);
-    updateAt = DateTime.parse(json['updateAt']);
   }
 
   Map<String, dynamic> toJson() {
@@ -51,8 +49,6 @@ class ProductModel {
       'tags': tags,
       'category': category.toJson(),
       'galleries': galleries.map((gallery) => gallery.toJson()).toList(),
-      'createdAt': createdAt.toString(),
-      'updateAt': updateAt.toString(),
     };
   }
 }

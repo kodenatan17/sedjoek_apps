@@ -50,6 +50,13 @@ Color cardSourvey = const Color(0xFF007878);
 Color cardMaterial = const Color(0xFFE41E26);
 Color cardNotification = const Color(0XFF471B9B);
 
+//Popup Task List
+Color cardInOut =const Color(0xFFA8FF48);
+Color cardOrder = const Color(0xFF007878);
+Color cardStocking = const Color(0xFFE41E26);
+Color cardTransaction = const Color(0XFF471B9B);
+
+
 TextStyle linkTextStyle = GoogleFonts.poppins(
   color: primaryColor,
 );

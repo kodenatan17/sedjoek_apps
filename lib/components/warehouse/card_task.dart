@@ -32,23 +32,23 @@ class CardTask extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            typeCard == 'notification'
+            typeCard == 'inout'
                 ? Lottie.asset(
-                    'assets/lottie/maintenance.json',
+                    'assets/lottie/inout.json',
                     fit: BoxFit.fill,
                   )
-                : typeCard == 'sourvey'
+                : typeCard == 'order'
                     ? Lottie.asset(
-                        'assets/lottie/survey.json',
+                        'assets/lottie/order.json',
                         fit: BoxFit.fill,
                       )
-                    : typeCard == 'material'
+                    : typeCard == 'stocking'
                         ? Lottie.asset(
-                            'assets/lottie/installation.json',
+                            'assets/lottie/stocking.json',
                             fit: BoxFit.fill,
                           )
                         : Lottie.asset(
-                            'assets/lottie/troubleshoot.json',
+                            'assets/lottie/transaction.json',
                             fit: BoxFit.fill,
                           ),
             Column(
@@ -58,27 +58,25 @@ class CardTask extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: defaultMargin * .5,
-                      vertical: kDefaultPadding
-                    ),
+                        horizontal: defaultMargin * .5,
+                        vertical: kDefaultPadding),
                     margin: const EdgeInsets.only(left: kDefaultMargin * .5),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: typeCard == 'notification'
-                          ? cardNotification
-                          : typeCard == 'sourvey'
-                              ? cardSourvey
-                              : typeCard == 'material'
-                                  ? cardMaterial
-                                  : cardInstallation,
+                      color: typeCard == 'inout'
+                          ? cardInOut
+                          : typeCard == 'order'
+                              ? cardOrder
+                              : typeCard == 'stocking'
+                                  ? cardStocking
+                                  : cardTransaction,
                     ),
                     child: Text(
                       countCard,
                       style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: semiBold,
-                        color: Colors.white
-                      ),
+                          fontSize: 40,
+                          fontWeight: semiBold,
+                          color: Colors.white),
                     ),
                   ),
                 ),
@@ -87,13 +85,13 @@ class CardTask extends StatelessWidget {
                   height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: typeCard == 'notification'
-                        ? cardNotification
-                        : typeCard == 'sourvey'
-                            ? cardSourvey
-                            : typeCard == 'material'
-                                ? cardMaterial
-                                : cardInstallation,
+                    color: typeCard == 'inout'
+                        ? cardInOut
+                        : typeCard == 'order'
+                            ? cardOrder
+                            : typeCard == 'stocking'
+                                ? cardStocking
+                                : cardTransaction,
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(defaultMargin),
                       bottomLeft: Radius.circular(defaultMargin),

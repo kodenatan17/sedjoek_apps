@@ -32,7 +32,7 @@ class _MainPageStateTechnition extends State<MainPageTechnition> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const QrPageTechniition(),
+              builder: (context) => const QrPageTechnition(),
             ),
           );
         },

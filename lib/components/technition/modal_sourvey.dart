@@ -2,6 +2,8 @@ import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:lottie/lottie.dart';
+import 'package:sedjoek_apps/components/technition/dropdown_forms.dart';
+import 'package:sedjoek_apps/components/technition/photo_forms.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
 
 import '../../theme.dart';
@@ -60,162 +62,42 @@ class _ModalSourveyState extends State<ModalSourvey> {
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Pipa',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: pipa,
-                          value: selectedPipa,
-                          onChanged: (value) => setState(
-                            () => selectedPipa = value.toString(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Pipa',
+                dropdownItems: pipa,
+                dropdownValue: selectedPipa,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Kabel Listrik',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: kabelListrik,
-                          value: selectedKabelListrik,
-                          onChanged: (value) => setState(
-                            () => selectedKabelListrik = value.toString(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Kabel Listrik',
+                dropdownItems: kabelListrik,
+                dropdownValue: selectedKabelListrik,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Pipa Drainase',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: pipaDrainase,
-                          value: selectedPipaDrainese,
-                          onChanged: (value) => setState(
-                            () => selectedPipaDrainese = value.toString(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Pipa Drainase',
+                dropdownItems: pipaDrainase,
+                dropdownValue: selectedPipaDrainese,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Bracket Outdoor',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: bracketOutdoor,
-                          value: selectedBrackerOutdoor,
-                          onChanged: (value) => setState(
-                            () => selectedBrackerOutdoor = value.toString(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Bracket Outdoor',
+                dropdownItems: bracketOutdoor,
+                dropdownValue: selectedBrackerOutdoor,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Dyna Bolts',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: dynaBolt,
-                          value: selectedDynaBolt,
-                          onChanged: (value) => setState(
-                            () => selectedDynaBolt = value.toString(),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Dyna Bolts',
+                dropdownItems: dynaBolt,
+                dropdownValue: selectedDynaBolt,
               ),
               const SizedBox(
                 height: kDefaultPadding,
@@ -251,84 +133,13 @@ class _ModalSourveyState extends State<ModalSourvey> {
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Silahkan Upload Foto Lokasi',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                    const SizedBox(height: kDefaultPadding),
-                    Container(
-                      width: 150,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: backgroundColor1,
-                      ),
-                      child: Center(
-                        child: Lottie.asset(
-                          'assets/lottie/upload.json',
-                          width: 150,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: defaultMargin,
-                    ),
-                    Text(
-                      'Kawan Teknisi',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: medium,
-                      ),
-                    )
-                  ],
-                ),
+              const PhotoForms(
+                titlePhoto: 'Silahkan Upload Foto Lokasi Pemasangan',
+                technitionName: 'Teknisi Sedjoek',
               ),
-              Container(
-                margin: const EdgeInsets.all(kDefaultMargin),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Silahkan Upload Foto Titik Pemasangan',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: semiBold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: kDefaultPadding),
-                    Container(
-                      width: 150,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: backgroundColor1,
-                      ),
-                      child: Center(
-                        child: Lottie.asset(
-                          'assets/lottie/upload.json',
-                          width: 150,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: defaultMargin,
-                    ),
-                    Text(
-                      'Kawan Teknisi',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: medium,
-                      ),
-                    )
-                  ],
-                ),
+              const PhotoForms(
+                titlePhoto: 'Silahkan Upload Foto Titik Pemasangan',
+                technitionName: 'Teknisi Sedjoek',
               ),
               const Divider(
                 height: kDefaultPadding * 2,
@@ -343,152 +154,47 @@ class _ModalSourveyState extends State<ModalSourvey> {
                   ),
                 ),
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Pipa',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: pipa,
-                          value: selectedPipa,
-                          onChanged: null,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Pipa',
+                dropdownItems: pipa,
+                dropdownValue: selectedPipa,
+                onChanged: false,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Kabel Listrik',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: kabelListrik,
-                          value: selectedKabelListrik,
-                          onChanged: null,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Kabel Listrik',
+                dropdownItems: kabelListrik,
+                dropdownValue: selectedKabelListrik,
+                onChanged: false,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Pipa Drainase',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: pipaDrainase,
-                          value: selectedPipaDrainese,
-                          onChanged: null,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Pipa Drainase',
+                dropdownItems: pipaDrainase,
+                dropdownValue: selectedPipaDrainese,
+                onChanged: false,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Bracket Outdoor',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: bracketOutdoor,
-                          value: selectedBrackerOutdoor,
-                          onChanged: null,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Bracket Outdoor',
+                dropdownItems: bracketOutdoor,
+                dropdownValue: selectedBrackerOutdoor,
+                onChanged: false,
               ),
               const SizedBox(
                 height: kDefaultPadding,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Additional Dyna Bolts',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      height: 40,
-                      child: DropdownButtonHideUnderline(
-                        child: CustomDropdownButton2(
-                          hint: 'Select Item',
-                          dropdownItems: dynaBolt,
-                          value: selectedDynaBolt,
-                          onChanged: null,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              DropdownForms(
+                titleForms: 'Additional Kabel Listrik',
+                dropdownItems: pipaDrainase,
+                dropdownValue: selectedPipaDrainese,
+                onChanged: false,
               ),
               const SizedBox(
                 height: kDefaultPadding,
@@ -540,84 +246,13 @@ class _ModalSourveyState extends State<ModalSourvey> {
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Lokasi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Lokasi Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
-            Container(
-              margin: const EdgeInsets.all(kDefaultMargin),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Silahkan Upload Foto Titik Pemasangan',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: semiBold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: kDefaultPadding),
-                  Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: backgroundColor1,
-                    ),
-                    child: Center(
-                      child: Lottie.asset(
-                        'assets/lottie/upload.json',
-                        width: 150,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: defaultMargin,
-                  ),
-                  Text(
-                    'Kawan Teknisi',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: medium,
-                    ),
-                  )
-                ],
-              ),
+            const PhotoForms(
+              titlePhoto: 'Silahkan Upload Foto Titik Pemasangan',
+              technitionName: 'Teknisi Sedjoek',
             ),
           ],
         ),
