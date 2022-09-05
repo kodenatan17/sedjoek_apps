@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/models/product_model.dart';
-import 'package:sedjoek_apps/services/auth_service.dart';
 import 'package:sedjoek_apps/services/product_service.dart';
 
 class ProductProvider with ChangeNotifier {
