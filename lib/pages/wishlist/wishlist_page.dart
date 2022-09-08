@@ -56,7 +56,14 @@ class WishlistPage extends StatelessWidget {
     Widget content() {
       return Expanded(
         child: Container(
-          color: backgroundColor1,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/images/bg-effect.png',
+              ),
+              fit: BoxFit.cover
+            ),
+          ),
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: defaultMargin),
             children: [
@@ -70,18 +77,30 @@ class WishlistPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: backgroundColor2,
-        centerTitle: true,
-        title: Text(
-          'Favorite AC',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: semiBold,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80),
+        child: AppBar(
+          elevation: 0,
+          flexibleSpace: Container(
+            height: double.maxFinite,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/bg-header.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          automaticallyImplyLeading: false,
+          backgroundColor: bgNavbar,
+          centerTitle: true,
+          title: Text(
+            'Favorite',
+            style: whiteTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: semiBold,
+            ),
           ),
         ),
-        elevation: 0,
-        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Column(

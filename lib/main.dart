@@ -44,6 +44,11 @@ import 'package:sedjoek_apps/provider/category_provider.dart';
 import 'package:sedjoek_apps/provider/event_provider.dart';
 import 'package:sedjoek_apps/provider/product_provider.dart';
 import 'package:sedjoek_apps/provider/promo_provider.dart';
+import 'package:sedjoek_apps/provider/stock_provider.dart';
+import 'package:sedjoek_apps/provider/techinician_shedule_provider.dart';
+import 'package:sedjoek_apps/provider/transaction_periode_provider.dart';
+import 'package:sedjoek_apps/provider/transaction_provider.dart';
+import 'package:sedjoek_apps/provider/transaction_stock_provider.dart';
 import 'package:sedjoek_apps/provider/user_detail_provider.dart';
 
 void main() {
@@ -55,7 +60,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // @override
+  @override
   // Widget build(BuildContext context) {
   //   return MultiProvider(
   //     providers: [
@@ -82,6 +87,21 @@ class MyApp extends StatelessWidget {
   //       ),
   //       ChangeNotifierProvider(
   //         create: (context) => UserDetailProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => StockProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => TransactionProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => TechnicianScheduleProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => TransactionPeriodeProvider(),
+  //       ),
+  //       ChangeNotifierProvider(
+  //         create: (context) => TransactionStockProvider(),
   //       ),
   //     ],
   //     child: MaterialApp(
@@ -122,13 +142,13 @@ class MyApp extends StatelessWidget {
   //         //PROMO
   //         '/promo-page': (context) => const PromoPage(),
 
-  // //WAREHOUSE
-  // '/warehouse/home-page': (context) => const HomePageWarehouse(),
-  // '/warehouse/notification-page': (context) =>
-  //     const NotificationPageWarehouse(),
-  // '/warehouse/stock-page': (context) => const StockPageWarehouse(),
-  // '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
-  // '/warehouse/': (context) => const MainPageWarehouse(),
+  //         //WAREHOUSE
+  //         '/warehouse/home-page': (context) => const HomePageWarehouse(),
+  //         '/warehouse/notification-page': (context) =>
+  //             const NotificationPageWarehouse(),
+  //         '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+  //         '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+  //         '/warehouse/': (context) => const MainPageWarehouse(),
 
   //         // TECHNITION
   //         '/technition/home-page': (context) => const HomePageTechnition(),
@@ -147,18 +167,20 @@ class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        routes: {
-          //WAREHOUSE
-          '/warehouse/home-page': (context) => const HomePageWarehouse(),
-          '/warehouse/notification-page': (context) =>
-              const NotificationPageWarehouse(),
-          '/warehouse/stock-page': (context) => const StockPageWarehouse(),
-          '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
-          '/': (context) => const MainPageWarehouse(),
-        });
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      routes: {
+        // TECHNITION
+        '/technition/home-page': (context) => const HomePageTechnition(),
+        '/technition/notification-page': (context) =>
+            const NotificationPageTechinition(),
+        '/technition/profile-page': (context) => const ProfilePageTechnition(),
+        '/technition/project-page': (context) => const ProjectPageTechnition(),
+        '/': (context) => const MainPageTechnition(),
+        '/technition/qr-page': (context) => const QrPageTechnition(),
+      },
+    );
   }
 }

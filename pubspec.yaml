@@ -51,6 +51,13 @@ dependencies:
   flutter_slidable: ^2.0.0
   pdf: ^3.8.3
   dropdown_button2: ^1.7.2
+  open_file: ^2.1.1
+  path_provider: ^2.0.11
+  intl_utils: ^2.7.0
+  signature: ^5.2.1
+  syncfusion_flutter_signaturepad: ^20.2.46
+  syncfusion_flutter_pdf: ^20.2.46
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +81,11 @@ flutter:
     - assets/icons/
     - assets/logo/
     - assets/products/
+    - assets/images/header_pdf.png
+    - assets/images/footer_pdf.png
+    - assets/images/stempel-paid.png
+    - assets/images/stempel-survey.png
+    - assets/images/stempel-cancel.png
 
   uses-material-design: true
 

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:im_stepper/stepper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sedjoek_apps/components/technition/photo_forms.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
@@ -29,6 +33,75 @@ class _ModalInstallationState extends State<ModalInstallation> {
   final returnBracketOutdoorController = TextEditingController();
   final returnDuckTapeController = TextEditingController();
 
+  File? imageLocation;
+  File? imageUnitInstallation;
+  File? imageIndoorInstallation;
+  File? imageOutdoorInstallation;
+  File? imageAcOn;
+
+  Future pickImageLocation(ImageSource source) async {
+    try {
+      final imageLocation = await ImagePicker().pickImage(source: source);
+      if (imageLocation == null) return;
+
+      final imageTemporary = File(imageLocation.path);
+      setState(() => this.imageLocation = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Gagal ambil gambar : $e');
+    }
+  }
+
+  Future pickImageUnitInstallation(ImageSource source) async {
+    try {
+      final imageUnitInstallation =
+          await ImagePicker().pickImage(source: source);
+      if (imageUnitInstallation == null) return;
+
+      final imageTemporary = File(imageUnitInstallation.path);
+      setState(() => this.imageUnitInstallation = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Gagal ambil gambar : $e');
+    }
+  }
+
+  Future pickImageIndoorInstallation(ImageSource source) async {
+    try {
+      final imageIndoorInstallation =
+          await ImagePicker().pickImage(source: source);
+      if (imageIndoorInstallation == null) return;
+
+      final imageTemporary = File(imageIndoorInstallation.path);
+      setState(() => this.imageIndoorInstallation = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Gagal ambil gambar : $e');
+    }
+  }
+
+  Future pickImageOutdoorInstallation(ImageSource source) async {
+    try {
+      final imageOutdoorInstallation =
+          await ImagePicker().pickImage(source: source);
+      if (imageOutdoorInstallation == null) return;
+
+      final imageTemporary = File(imageOutdoorInstallation.path);
+      setState(() => this.imageOutdoorInstallation = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Gagal ambil gambar : $e');
+    }
+  }
+
+  Future pickImageAcOn(ImageSource source) async {
+    try {
+      final imageAcOn = await ImagePicker().pickImage(source: source);
+      if (imageAcOn == null) return;
+
+      final imageTemporary = File(imageAcOn.path);
+      setState(() => this.imageAcOn = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Gagal ambil gambar : $e');
+    }
+  }
+
   @override
   void dispose() {
     returnPipaController.dispose();
@@ -55,25 +128,693 @@ class _ModalInstallationState extends State<ModalInstallation> {
                 ),
               ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Lokasi',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Lokasi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageLocation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageLocation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageLocation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageLocation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageLocation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Unit Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Unit Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageUnitInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageUnitInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageUnitInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Indoor Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Indoor Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageIndoorInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageIndoorInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageIndoorInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageIndoorInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageIndoorInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Outdoor Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Outdoor Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageOutdoorInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageOutdoorInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageOutdoorInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageOutdoorInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageOutdoorInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Unit AC Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Unit AC Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageUnitInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageUnitInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageUnitInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload AC ON',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageAcOn == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageAcOn(ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageAcOn(ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageAcOn == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageAcOn!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
@@ -158,25 +899,693 @@ class _ModalInstallationState extends State<ModalInstallation> {
                 ),
               ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Lokasi',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Lokasi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageLocation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageLocation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageLocation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageLocation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageLocation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Unit Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Unit Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageUnitInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageUnitInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageUnitInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Indoor Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Indoor Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageIndoorInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageIndoorInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageIndoorInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageIndoorInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageIndoorInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Outdoor Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Outdoor Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageOutdoorInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageOutdoorInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageOutdoorInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageOutdoorInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageOutdoorInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
-            const PhotoForms(
-              titlePhoto: 'Silahkan Upload Foto Unit AC Pemasangan',
-              technitionName: 'Teknisi Sedjoek',
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload Foto Unit AC Pemasangan',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageUnitInstallation == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageUnitInstallation(
+                                                ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageUnitInstallation == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageUnitInstallation!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(kDefaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Silahkan Upload AC ON',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: semiBold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: kDefaultPadding),
+                  Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: imageAcOn == null
+                          ? backgroundColor1
+                          : Colors.transparent,
+                    ),
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet<void>(
+                              context: context,
+                              builder: (_) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  margin: const EdgeInsets.symmetric(
+                                    vertical: kDefaultPadding,
+                                    horizontal: kDefaultPadding,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageAcOn(ImageSource.gallery);
+                                          },
+                                          icon: Icon(Icons.file_open),
+                                          label: Text('Gallery'),
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.all(
+                                            kDefaultPadding),
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            pickImageAcOn(ImageSource.camera);
+                                          },
+                                          icon: Icon(Icons.camera_alt),
+                                          label: Text('Camera'),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              });
+                        },
+                        child: imageAcOn == null
+                            ? Lottie.asset(
+                                'assets/lottie/upload.json',
+                                width: 150,
+                              )
+                            : Image.file(
+                                File(imageAcOn!.path),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                frameBuilder: (BuildContext context,
+                                    Widget child,
+                                    int? frame,
+                                    bool wasSynchronouslyLoaded) {
+                                  if (wasSynchronouslyLoaded) {
+                                    return child;
+                                  }
+                                  return AnimatedOpacity(
+                                    opacity: frame == null ? 0 : 1,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.easeOut,
+                                    child: child,
+                                  );
+                                },
+                              ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: defaultMargin,
+                  ),
+                  Text(
+                    'Kawan Teknisi',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
             const Divider(
               height: kDefaultPadding,

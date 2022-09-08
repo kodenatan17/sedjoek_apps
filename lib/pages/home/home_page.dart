@@ -58,25 +58,32 @@ class _HomePageState extends State<HomePage> {
                 image: AssetImage(
                   "assets/images/bg-header.png",
                 ),
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             child: buildProfile(user),
           ),
         ),
       ),
-      backgroundColor: backgroundColor1,
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kDefaultMargin * 1.5,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg-effect.png'),
+            fit: BoxFit.fill,
+          ),
         ),
-        children: [
-          buildCardCarousel(),
-          buildProductTitle(),
-          // buildProduct(productProvider),
-          buildProduct(),
-          buildCategories(),
-        ],
+        child: ListView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kDefaultMargin * 1.5,
+          ),
+          children: [
+            buildCardCarousel(),
+            buildProductTitle(),
+            // buildProduct(productProvider),
+            buildProduct(),
+            buildCategories(),
+          ],
+        ),
       ),
     );
   }

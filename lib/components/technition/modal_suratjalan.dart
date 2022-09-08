@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sedjoek_apps/theme.dart';
 
-import '../api/pdf_api.dart';
-import '../api/pdf_invoice.dart';
-import '../models/dummy/customer_model.dart';
-import '../models/dummy/invoice_model.dart';
-import '../models/dummy/supplier_model.dart';
-import '../theme.dart';
-
-class ModalNota extends StatelessWidget {
-  const ModalNota({
+class ModalSuratJalan extends StatelessWidget {
+  const ModalSuratJalan({
     Key? key,
     required this.codeTransaction,
     required this.nameCustomer,
     required this.hpCustomer,
+    required this.nameTechnician,
+    required this.hpTechnician,
     required this.addressCustomer,
     required this.totalPrice,
     required this.shippingPrice,
@@ -22,13 +18,13 @@ class ModalNota extends StatelessWidget {
     required this.periodeTransaction,
     required this.startTransaction,
     required this.endTransaction,
-    required this.couponMode,
-    required this.statusTransaction,
   }) : super(key: key);
 
   final String codeTransaction;
   final String nameCustomer;
   final String hpCustomer;
+  final String nameTechnician;
+  final String hpTechnician;
   final String addressCustomer;
   final String totalPrice;
   final String shippingPrice;
@@ -38,8 +34,6 @@ class ModalNota extends StatelessWidget {
   final String periodeTransaction;
   final String startTransaction;
   final String endTransaction;
-  final String couponMode;
-  final String statusTransaction;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +43,7 @@ class ModalNota extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: const Text("NOTA PEMESANAN"),
+        title: const Text("SURAT BAST"),
       ),
       body: Container(
         height: height,
@@ -114,11 +108,55 @@ class ModalNota extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Data Pesanan Digital",
+                        'Data Pesanan Digital',
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 12,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                      Text(
+                        nameTechnician,
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 14,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                      Text(
+                        hpTechnician,
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 14,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/icons/whatsapp.png",
+                      color: Colors.greenAccent,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+              width: width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Data Pesanan Digital',
                         style: secondaryTextStyle.copyWith(
                           fontSize: 12,
                           fontWeight: semiBold,
@@ -150,7 +188,6 @@ class ModalNota extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(),
             Container(
               padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
               width: width,
@@ -298,48 +335,6 @@ class ModalNota extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
-              width: width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.event_note_rounded,
-                            color: primaryColor,
-                          ),
-                          const SizedBox(
-                            width: kDefaultPadding,
-                          ),
-                          const Text(
-                            "Coupon",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        couponMode,
-                        style: primaryTextStyle.copyWith(
-                          fontStyle: FontStyle.italic,
-                          fontSize: 14,
-                          fontWeight: medium,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
             const SizedBox(
               height: kDefaultPadding,
             ),
@@ -348,68 +343,10 @@ class ModalNota extends StatelessWidget {
                 alignment: FractionalOffset.bottomCenter,
                 child: MaterialButton(
                   minWidth: width,
-                  onPressed: () async {
-                    final date = DateTime.now();
-                    final dueDate = date.add(
-                      Duration(days: 183),
-                    );
-
-                    final invoice = Invoice(
-                      supplier: Supplier(
-                        name: 'Ferry Natan Wibisono',
-                        address:
-                            'Kp. Lokomotif RT 05 RW 05 No. 40 Kaliabang Tengah',
-                        paymentInfo: 'https://paypal.me/kodenatan17',
-                      ),
-                      customer: Customer(
-                        name: 'PT. Aplha Cemerlang Solusindo',
-                        address:
-                            'Jl. Taman VIII No. 208 Jati Mulya, Tambun Selatan, Bekasi',
-                      ),
-                      info: InvoiceInfo(
-                        date: date,
-                        dueDate: dueDate,
-                        description: 'My Description...',
-                        number: '${DateTime.now().year}-9999',
-                      ),
-                      items: [
-                        InvoiceItem(
-                          description: 'AC Sharp A456UL',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0.19,
-                          unitPrice: 190000,
-                        ),
-                        InvoiceItem(
-                          description: 'Kabel Power',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0.19,
-                          unitPrice: 35000,
-                        ),
-                        InvoiceItem(
-                          description: 'Pipa',
-                          date: DateTime.now(),
-                          quantity: 1,
-                          vat: 0.19,
-                          unitPrice: 35000,
-                        ),
-                        InvoiceItem(
-                          description: 'Dyna Bolt',
-                          date: DateTime.now(),
-                          quantity: 4,
-                          vat: 0.19,
-                          unitPrice: 35000,
-                        ),
-                      ],
-                      status: statusTransaction,
-                    );
-                    final pdfFile = await PdfInvoiceApi.generate(invoice);
-                    PdfApi.openFile(pdfFile);
-                  },
+                  onPressed: () async {},
                   color: primaryColor,
                   child: const Text(
-                    "PRINT NOTA PRODUKSI",
+                    "PRINT SURAT BAST",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

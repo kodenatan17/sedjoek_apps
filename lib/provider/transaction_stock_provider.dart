@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/services/transaction_stock_service.dart';
 import '../models/transaction_stock_model.dart';
 
-class TransactionStock with ChangeNotifier {
+class TransactionStockProvider with ChangeNotifier {
   List<TransactionStockModel> _transactionStocks = [];
 
   List<TransactionStockModel> get transactionStocks => _transactionStocks;

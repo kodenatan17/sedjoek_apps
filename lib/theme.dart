@@ -7,6 +7,7 @@ Color alertColor = const Color(0xFFED6363);
 Color priceColor = const Color(0xFF00B4D7);
 Color successColor = const Color(0xFFA8FF48);
 //OLD PALLETE THEME
+Color bgNavbar = const Color(0xFFdeebfd);
 Color backgroundColor1 = const Color(0xFFF6F8FB);
 Color backgroundColor2 = const Color(0xFFFFFFFF);
 Color backgroundColor3 = const Color(0xFFF9F9F3);

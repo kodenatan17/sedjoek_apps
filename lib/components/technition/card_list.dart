@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sedjoek_apps/components/modal_nota.dart';
+import 'package:sedjoek_apps/components/technition/modal_suratjalan.dart';
 import 'package:sedjoek_apps/components/technition/modal_finish.dart';
 import 'package:sedjoek_apps/components/technition/modal_installation.dart';
 import 'package:sedjoek_apps/components/technition/modal_sourvey.dart';
@@ -13,6 +14,8 @@ class CardList extends StatelessWidget {
   final String codeTransaction;
   final String nameCustomer;
   final String hpCustomer;
+  final String nameTechnician;
+  final String hpTechnician;
   final String addressCustomer;
   final String totalPrice;
   final String shippingPrice;
@@ -44,6 +47,8 @@ class CardList extends StatelessWidget {
     required this.endTransaction,
     required this.couponMode,
     required this.statusTransaction,
+    required this.nameTechnician,
+    required this.hpTechnician,
   }) : super(key: key);
 
   @override
@@ -81,7 +86,27 @@ class CardList extends StatelessWidget {
           ),
           SlidableAction(
             onPressed: ((context) {
-              //onaction
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ModalSuratJalan(
+                    codeTransaction: codeTransaction,
+                    nameCustomer: nameCustomer,
+                    hpCustomer: hpCustomer,
+                    nameTechnician: nameTechnician,
+                    hpTechnician: hpTechnician,
+                    addressCustomer: addressCustomer,
+                    totalPrice: totalPrice,
+                    shippingPrice: shippingPrice,
+                    additionalPrice: additionalPrice,
+                    productsType: productsType,
+                    productsName: productsName,
+                    periodeTransaction: periodeTransaction,
+                    startTransaction: startTransaction,
+                    endTransaction: endTransaction,
+                  ),
+                ),
+              );
             }),
             icon: Icons.message,
             backgroundColor: cardMaterial,

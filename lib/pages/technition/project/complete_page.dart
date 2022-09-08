@@ -15,6 +15,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -25,7 +27,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -34,6 +36,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -44,7 +48,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -53,6 +57,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -63,7 +69,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -72,6 +78,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -82,7 +90,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -91,6 +99,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -101,7 +111,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -110,6 +120,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -120,7 +132,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -129,6 +141,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -139,7 +153,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
       {
         'addressList': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
@@ -148,6 +162,8 @@ class CompletePage extends StatelessWidget {
         'codeTransaction': 'NA001/01/09/22',
         'nameCustomer': 'Ferry Natan Wibisono',
         'hpCustomer': '082114155395',
+        'nameTechnician': 'John Mukhlis',
+        'hpTechnician': '082114155395',
         'addressCustomer': 'Kp Lokomotif RT 05 RW 05 No 40 Kaliabang Tengah',
         'totalPrice': 'Rp.190.000',
         'shippingPrice': 'Rp.0',
@@ -158,7 +174,7 @@ class CompletePage extends StatelessWidget {
         'startTransaction': '01 Sept 2022',
         'endTransaction': '01 Feb 2022',
         'couponMode': 'none',
-        'statusTransaction': 'Completed'
+        'statusTransaction': 'Complete'
       },
     ];
     return ListView.separated(
@@ -172,6 +188,8 @@ class CompletePage extends StatelessWidget {
           codeTransaction: '${allDataPelanggan[index]["codeTransaction"]}',
           nameCustomer: '${allDataPelanggan[index]["nameCustomer"]}',
           hpCustomer: '${allDataPelanggan[index]["hpCustomer"]}',
+          nameTechnician: '${allDataPelanggan[index]["nameTechinican"]}',
+          hpTechnician: '${allDataPelanggan[index]["hpTechinican"]}',
           addressCustomer: '${allDataPelanggan[index]["addressCustomer"]}',
           totalPrice: '${allDataPelanggan[index]["totalPrice"]}',
           shippingPrice: '${allDataPelanggan[index]["shippingPrice"]}',

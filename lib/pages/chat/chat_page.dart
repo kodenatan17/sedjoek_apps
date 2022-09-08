@@ -70,20 +70,38 @@ class ChatPage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: backgroundColor2,
-        centerTitle: true,
-        title: Text(
-          'Message Support',
-          style: primaryTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: semiBold,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(80),
+        child: AppBar(
+          elevation: 0,
+          flexibleSpace: Container(
+            height: double.maxFinite,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/bg-header.png"),
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          centerTitle: true,
+          title: Text(
+            'Message Support',
+            style: whiteTextStyle.copyWith(
+              fontSize: 18,
+              fontWeight: semiBold,
+            ),
           ),
         ),
-        elevation: 0,
-        automaticallyImplyLeading: false,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/bg-effect.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           children: [
             content(),
