@@ -21,6 +21,7 @@ import 'package:sedjoek_apps/pages/guide/syarat_ketentuan.dart';
 import 'package:sedjoek_apps/pages/profile/success_edit_page.dart';
 import 'package:sedjoek_apps/pages/promo/promo_page.dart';
 import 'package:sedjoek_apps/pages/splash_page.dart';
+import 'package:sedjoek_apps/pages/technition/home/drawer_page.dart';
 import 'package:sedjoek_apps/pages/technition/home/home_page.dart';
 import 'package:sedjoek_apps/pages/technition/main_page.dart';
 import 'package:sedjoek_apps/pages/technition/notification/notification_page.dart';
@@ -35,6 +36,8 @@ import 'package:sedjoek_apps/pages/warehouse/home/home_page.dart';
 import 'package:sedjoek_apps/pages/warehouse/main_page.dart';
 import 'package:sedjoek_apps/pages/warehouse/notification/notification_page.dart';
 import 'package:sedjoek_apps/pages/warehouse/profile/profile_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/qr/qr_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/stock/stock_opname.dart';
 import 'package:sedjoek_apps/pages/warehouse/stock/stock_page.dart';
 import 'package:sedjoek_apps/pages/wishlist/wishlist_page.dart';
 import 'package:sedjoek_apps/provider/article_provider.dart';
@@ -142,13 +145,14 @@ class MyApp extends StatelessWidget {
   //         //PROMO
   //         '/promo-page': (context) => const PromoPage(),
 
-  //         //WAREHOUSE
-  //         '/warehouse/home-page': (context) => const HomePageWarehouse(),
-  //         '/warehouse/notification-page': (context) =>
-  //             const NotificationPageWarehouse(),
-  //         '/warehouse/stock-page': (context) => const StockPageWarehouse(),
-  //         '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
-  //         '/warehouse/': (context) => const MainPageWarehouse(),
+  // //WAREHOUSE
+  // '/warehouse/home-page': (context) => const HomePageWarehouse(),
+  // '/warehouse/notification-page': (context) =>
+  //     const NotificationPageWarehouse(),
+  // '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+  // '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+  // '/warehouse/': (context) => const MainPageWarehouse(),
+  // '/warehouse/qr-page' : (context) => const QrPageWarehouse(),
 
   //         // TECHNITION
   //         '/technition/home-page': (context) => const HomePageTechnition(),
@@ -172,14 +176,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        // TECHNITION
-        '/technition/home-page': (context) => const HomePageTechnition(),
-        '/technition/notification-page': (context) =>
-            const NotificationPageTechinition(),
-        '/technition/profile-page': (context) => const ProfilePageTechnition(),
-        '/technition/project-page': (context) => const ProjectPageTechnition(),
-        '/': (context) => const MainPageTechnition(),
-        '/technition/qr-page': (context) => const QrPageTechnition(),
+        //WAREHOUSE
+        '/warehouse/home-page': (context) => const HomePageWarehouse(),
+        '/warehouse/notification-page': (context) =>
+            const NotificationPageWarehouse(),
+        '/warehouse/stock-page': (context) => const StockPageWarehouse(),
+        '/warehouse/profile-page': (context) => const ProfilePageWarehouse(),
+        '/warehouse/qr-page': (context) => const QrPageWarehouse(),
+        '/warehouse/stock-opname' : (context) => const StockOpname(),
+        '/': (context) => const MainPageWarehouse(),
       },
     );
   }

@@ -15,7 +15,6 @@ class CardTask extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sedjoek_apps/pages/warehouse/stock/stock_opname.dart';
 
 import '../../../components/backup_profile_photo.dart';
 import '../../../components/warehouse/card_task.dart';
@@ -27,7 +28,7 @@ class HomePageWarehouse extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(kDefaultPadding),
-        child: buildDashboard(),
+        child: buildDashboard(context),
       ),
     );
   }
@@ -71,7 +72,7 @@ class HomePageWarehouse extends StatelessWidget {
     );
   }
 
-  Widget buildDashboard() {
+  Widget buildDashboard(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(kDefaultMargin),
       child: GridView.count(
@@ -89,10 +90,15 @@ class HomePageWarehouse extends StatelessWidget {
             countCard: '2',
             typeCard: 'order',
           ),
-          CardTask(
-            titleCard: 'Stocking',
-            countCard: '3',
-            typeCard: 'stocking',
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/warehouse/stock-opname');
+            },
+            child: CardTask(
+              titleCard: 'Stock Opname',
+              countCard: '3',
+              typeCard: 'stocking',
+            ),
           ),
           CardTask(
             titleCard: 'Transaction',

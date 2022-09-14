@@ -1,81 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:sedjoek_apps/pages/technition/qr/barcode_scanner.dart';
+import 'package:sedjoek_apps/pages/technition/qr/qr_scanner.dart';
 
 import '../../../components/backup_profile_photo.dart';
 import '../../../theme.dart';
 
-class QrPageTechnition extends StatelessWidget {
+class QrPageTechnition extends StatefulWidget {
   const QrPageTechnition({Key? key}) : super(key: key);
 
   @override
+  State<QrPageTechnition> createState() => _QrPageTechnitionState();
+}
+
+class _QrPageTechnitionState extends State<QrPageTechnition> {
+  final controller = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight + 50),
-        child: ClipPath(
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/images/bg-header.png",
-                ),
-                fit: BoxFit.fill,
-              ),
-            ),
-            child: buildProfile(context),
-          ),
-        ),
-      ),
+      body: buildContent(context),
     );
   }
 
-  Widget buildProfile(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: defaultMargin, left: defaultMargin),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back,
+  Widget buildContent(BuildContext context) => DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.indigo[900],
+            bottom: const TabBar(
+              tabs: [
+                Tab(
+                  icon: Icon(
+                    Icons.qr_code,
+                    size: 40,
+                  ),
+                ),
+                Tab(
+                  icon: Icon(
+                    Icons.qr_code_scanner,
+                    size: 40,
+                  ),
+                ),
+              ],
             ),
-            color: Colors.white,
+            title: Text(
+              '  QR / Barcode Scanner',
+            ),
           ),
-          SizedBox(
-            width: defaultMargin,
-          ),
-          BackupPhotoProfile(
-            isVerified: true,
-          ),
-          SizedBox(
-            width: defaultMargin,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          body: const TabBarView(
             children: [
-              Text(
-                "Hallo,",
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semiBold,
-                ),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                'Kawan Teknisi',
-                style: titleTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: semiBold,
-                ),
-              ),
+              QrScannerPage(),
+              BarcodeScannerPage(),
             ],
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      );
 }

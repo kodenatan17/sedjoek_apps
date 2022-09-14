@@ -7,7 +7,7 @@ import 'package:im_stepper/stepper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:sedjoek_apps/components/technition/dropdown_forms.dart';
-import 'package:sedjoek_apps/components/technition/modal_addtional_detail.dart';
+import 'package:sedjoek_apps/components/technition/modal_survey_detail.dart';
 import 'package:sedjoek_apps/components/technition/photo_forms.dart';
 import 'package:sedjoek_apps/widgets/forms.dart';
 
@@ -640,54 +640,57 @@ class _ModalSourveyState extends State<ModalSourvey> {
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          showModalBottomSheet<void>(
-                              context: context,
-                              builder: (_) {
-                                return Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: kDefaultPadding,
-                                  ),
-                                  width: double.infinity,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.1,
-                                  margin: const EdgeInsets.symmetric(
-                                    vertical: kDefaultPadding,
-                                    horizontal: kDefaultPadding,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.all(
-                                            kDefaultPadding),
-                                        child: ElevatedButton.icon(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                            pickImageInstallation(
-                                                ImageSource.gallery);
-                                          },
-                                          icon: Icon(Icons.file_open),
-                                          label: Text('Gallery'),
-                                        ),
+                          imageInstallation == null
+                              ? null
+                              : showModalBottomSheet<void>(
+                                  context: context,
+                                  builder: (_) {
+                                    return Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: kDefaultPadding,
                                       ),
-                                      Container(
-                                        padding: const EdgeInsets.all(
-                                            kDefaultPadding),
-                                        child: ElevatedButton.icon(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                            pickImageInstallation(
-                                                ImageSource.camera);
-                                          },
-                                          icon: Icon(Icons.camera_alt),
-                                          label: Text('Camera'),
-                                        ),
+                                      width: double.infinity,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1,
+                                      margin: const EdgeInsets.symmetric(
+                                        vertical: kDefaultPadding,
+                                        horizontal: kDefaultPadding,
                                       ),
-                                    ],
-                                  ),
-                                );
-                              });
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(
+                                                kDefaultPadding),
+                                            child: ElevatedButton.icon(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                pickImageInstallation(
+                                                    ImageSource.gallery);
+                                              },
+                                              icon: Icon(Icons.file_open),
+                                              label: Text('Gallery'),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.all(
+                                                kDefaultPadding),
+                                            child: ElevatedButton.icon(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                pickImageInstallation(
+                                                    ImageSource.camera);
+                                              },
+                                              icon: Icon(Icons.camera_alt),
+                                              label: Text('Camera'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
                         },
                         child: imageInstallation == null
                             ? Lottie.asset(
@@ -748,58 +751,65 @@ class _ModalSourveyState extends State<ModalSourvey> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: backgroundColor1,
+                      color: imagePoint == null
+                          ? backgroundColor1
+                          : Colors.transparent,
                     ),
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          showModalBottomSheet<void>(
-                            context: context,
-                            builder: (_) {
-                              return Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: kDefaultPadding,
-                                ),
-                                width: double.infinity,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.1,
-                                margin: const EdgeInsets.symmetric(
-                                  vertical: kDefaultPadding,
-                                  horizontal: kDefaultPadding,
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Container(
-                                      padding:
-                                          const EdgeInsets.all(kDefaultPadding),
-                                      child: ElevatedButton.icon(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          pickImagePoint(ImageSource.gallery);
-                                        },
-                                        icon: Icon(Icons.file_open),
-                                        label: Text('Gallery'),
+                          imagePoint == null
+                              ? null
+                              : showModalBottomSheet<void>(
+                                  context: context,
+                                  builder: (_) {
+                                    return Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: kDefaultPadding,
                                       ),
-                                    ),
-                                    Container(
-                                      padding:
-                                          const EdgeInsets.all(kDefaultPadding),
-                                      child: ElevatedButton.icon(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          pickImagePoint(ImageSource.camera);
-                                        },
-                                        icon: Icon(Icons.camera_alt),
-                                        label: Text('Camera'),
+                                      width: double.infinity,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.1,
+                                      margin: const EdgeInsets.symmetric(
+                                        vertical: kDefaultPadding,
+                                        horizontal: kDefaultPadding,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.all(
+                                                kDefaultPadding),
+                                            child: ElevatedButton.icon(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                pickImagePoint(
+                                                    ImageSource.gallery);
+                                              },
+                                              icon: Icon(Icons.file_open),
+                                              label: Text('Gallery'),
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.all(
+                                                kDefaultPadding),
+                                            child: ElevatedButton.icon(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                pickImagePoint(
+                                                    ImageSource.camera);
+                                              },
+                                              icon: Icon(Icons.camera_alt),
+                                              label: Text('Camera'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
                         },
                         child: imagePoint == null
                             ? Lottie.asset(
@@ -1003,7 +1013,7 @@ class _ModalSourveyState extends State<ModalSourvey> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ModalAdditionalDetail(
+                builder: (context) => ModalSurveyDetail(
                   selectedPipa: selectedPipa,
                   selectedPipaDrainese: selectedPipaDrainase,
                   selectedDynaBolt: selectedDynaBolt,

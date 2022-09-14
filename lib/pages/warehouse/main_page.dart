@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sedjoek_apps/pages/warehouse/stock/stock_page.dart';
 
 import '../../theme.dart';
 import 'chat/chat_page.dart';
@@ -27,7 +28,7 @@ class _MainPageWarehouseState extends State<MainPageWarehouse> {
           color: Colors.white,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/product');
+          Navigator.pushNamed(context, '/warehouse/qr-page');
         },
       );
     }
@@ -123,7 +124,7 @@ class _MainPageWarehouseState extends State<MainPageWarehouse> {
           return const ChatPageWarehouse();
           break;
         case 2:
-          return const NotificationPageWarehouse();
+          return const StockPageWarehouse();
           break;
         case 3:
           return ProfilePageWarehouse();

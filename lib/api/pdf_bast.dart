@@ -64,8 +64,8 @@ class PdfBastApi {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              buildPicPembuat(bast.info),
               buildPicTechnition(bast.techinition),
+              buildPicCustomer(bast.info),
             ],
           ),
         ],
@@ -73,18 +73,19 @@ class PdfBastApi {
     );
   }
 
-  static Widget buildPicPembuat(BastInfo info) {
+  static Widget buildPicCustomer(BastInfo info) {
     final titles = <String> [
-      'Nama PIC :',
-      'Jabatan  :',
-      'Alamat   :',
-      'Selanjutnya disebut sebagai PIHAK PERTAMA'
+      'Nama Customer :',
+      'No Handphone  :',
+      'Alamat        :',
+      'Selanjutnya disebut sebagai'
     ];
 
     final data = <String> [
       info.pic,
+      info.handphone,
       info.address,
-      info.address,
+      'PIHAK KEDUA'
     ];
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,16 +99,19 @@ class PdfBastApi {
 
   static Widget buildPicTechnition(Technition technition) {
     final titles = <String> [
-      'Nama PIC :',
-      'Jabatan  :',
-      'Alamat   :',
-      'Selanjutnya disebut sebagai PIHAK KEDUA',
+      'Nama PIC       :',
+      'Jabatan        :',
+      'Alamat         :',
+      'No Handphone   :',
+      'Selanjutnya disebut sebagai',
     ];
 
     final data = <String> [
       technition.name,
       technition.jobs,
       technition.address,
+      technition.handphone,
+      'PIHAK PERTAMA'
     ];
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

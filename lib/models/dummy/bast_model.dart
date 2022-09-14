@@ -20,11 +20,13 @@ class BastInfo {
   final String date;
   final String office;
   final String address;
+  final String handphone;
 
   const BastInfo({
     required this.pic,
     required this.date,
     required this.office,
     required this.address,
+    required this.handphone,
   });
 }

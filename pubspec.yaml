@@ -58,6 +58,18 @@ dependencies:
   syncfusion_flutter_signaturepad: ^20.2.46
   syncfusion_flutter_pdf: ^20.2.46
   image_picker: ^0.8.5+3
+  hidden_drawer_menu: ^3.0.1
+  flutter_svg: ^1.1.4
+  barcode_widget: ^2.0.3
+  flutter_qr_bar_scanner: ^3.0.2
+  qr_code_scanner: ^1.0.1
+  liquid_swipe: ^3.0.0
+  shadow: ^1.5.0
+  drop_shadow_image: ^0.9.1
+  bloc: ^8.1.0
+  flutter_bloc: ^8.1.1
+  rxdart: ^0.27.5
+  collapsible_sidebar: ^2.0.2
 
 dev_dependencies:
   flutter_test:

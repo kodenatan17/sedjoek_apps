@@ -46,17 +46,32 @@ Color cardInfo = const Color(0xFFA8FF48);
 Color cardPromo = const Color(0xFF007878);
 
 //Popup Task List
-Color cardInstallation =const Color(0xFFA8FF48);
+Color cardInstallation = const Color(0xFFA8FF48);
 Color cardSourvey = const Color(0xFF007878);
 Color cardMaterial = const Color(0xFFE41E26);
 Color cardNotification = const Color(0XFF471B9B);
 
 //Popup Task List
-Color cardInOut =const Color(0xFFA8FF48);
+Color cardInOut = const Color(0xFFA8FF48);
 Color cardOrder = const Color(0xFF007878);
 Color cardStocking = const Color(0xFFE41E26);
 Color cardTransaction = const Color(0XFF471B9B);
 
+TextStyle panasonicStyle = GoogleFonts.poppins(
+  color: panasonicColor,
+);
+
+TextStyle greeStyle = GoogleFonts.poppins(
+  color: greeBlueColor,
+);
+
+TextStyle lgStyle = GoogleFonts.poppins(
+  color: lgColor,
+);
+
+TextStyle sharpStyle = GoogleFonts.poppins(
+  color: sharpColor,
+);
 
 TextStyle linkTextStyle = GoogleFonts.poppins(
   color: primaryColor,

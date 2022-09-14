@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:sedjoek_apps/components/technition/card_task.dart';
 
 import '../../../components/backup_profile_photo.dart';
 import '../../../components/photo_profile.dart';
 import '../../../theme.dart';
 
-class HomePageTechnition extends StatelessWidget {
+class HomePageTechnition extends StatefulWidget {
   const HomePageTechnition({Key? key}) : super(key: key);
 
+  @override
+  State<HomePageTechnition> createState() => _HomePageTechnitionState();
+}
+
+class _HomePageTechnitionState extends State<HomePageTechnition> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
@@ -40,6 +46,9 @@ class HomePageTechnition extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BackupPhotoProfile(
+            onTap: () {
+              ZoomDrawer.of(context)?.toggle();
+            },
             isVerified: true,
           ),
           SizedBox(
@@ -66,6 +75,15 @@ class HomePageTechnition extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const Spacer(),
+          Container(
+            margin: const EdgeInsets.only(right: defaultMargin),
+            child: IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: () {},
+              color: Colors.white,
+            ),
           ),
         ],
       ),

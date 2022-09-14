@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sedjoek_apps/theme.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'dart:ui' as ui;
 
-class ModalAdditionalDetail extends StatefulWidget {
-  const ModalAdditionalDetail({
+class ModalInstallationDetail extends StatefulWidget {
+  const ModalInstallationDetail({
     Key? key,
     this.selectedPipa,
     this.selectedPipaDrainese,
@@ -14,7 +13,8 @@ class ModalAdditionalDetail extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ModalAdditionalDetail> createState() => _ModalAdditionalDetailState();
+  State<ModalInstallationDetail> createState() =>
+      _ModalInstallationDetailState();
 
   final String? selectedPipa;
   final String? selectedPipaDrainese;
@@ -23,7 +23,7 @@ class ModalAdditionalDetail extends StatefulWidget {
   final String? selectedDynaBolt;
 }
 
-class _ModalAdditionalDetailState extends State<ModalAdditionalDetail> {
+class _ModalInstallationDetailState extends State<ModalInstallationDetail> {
   final GlobalKey<SfSignaturePadState> signatureGlobalKey = GlobalKey();
 
   @override
@@ -35,39 +35,15 @@ class _ModalAdditionalDetailState extends State<ModalAdditionalDetail> {
     signatureGlobalKey.currentState!.clear();
   }
 
-  void _handleSave() async {
-    final data =
-        await signatureGlobalKey.currentState!.toImage(pixelRatio: 3.0);
-    final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return Scaffold(
-            appBar: AppBar(),
-            body: Center(
-              child: Container(
-                color: Colors.grey[300],
-                child: Image.memory(bytes!.buffer.asUint8List()),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
+  void _handleSave() {}
 
   @override
   Widget build(BuildContext context) {
-    final String? selectedPipa = widget.selectedPipa;
-    final String? selectedPipaDrainese = widget.selectedPipaDrainese;
-    final String? selectedKabelListrik = widget.selectedKabelListrik;
-    final String? selectedBrackerOutdoor = widget.selectedBrackerOutdoor;
-    final String? selectedDynaBolt = widget.selectedDynaBolt;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
-        title: const Text("Confirm Installation"),
+        title: const Text("Confirm Sourvey"),
       ),
       body: Stack(
         children: [
@@ -84,32 +60,6 @@ class _ModalAdditionalDetailState extends State<ModalAdditionalDetail> {
               buildButton(context),
             ],
           ),
-          DraggableScrollableSheet(
-            initialChildSize: 0.3,
-            minChildSize: 0.1,
-            maxChildSize: 0.8,
-            builder: (context, controller) => ClipRRect(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(kDefaultCircular),
-                topLeft: Radius.circular(kDefaultCircular),
-              ),
-              child: Container(
-                color: Colors.white,
-                child: ListView(
-                  controller: controller,
-                  children: [
-                    _createDataTable(
-                      selectedPipa,
-                      selectedPipaDrainese,
-                      selectedKabelListrik,
-                      selectedBrackerOutdoor,
-                      selectedDynaBolt,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );

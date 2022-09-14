@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sedjoek_apps/pages/warehouse/home/home_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/profile/profile_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/qr/qr_page.dart';
+import 'package:sedjoek_apps/pages/warehouse/stock/stock_page.dart';
 
 import '../theme.dart';
 import 'chat/chat_page.dart';
@@ -67,10 +71,9 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                    top: kDefaultMargin,
-                    bottom: kDefaultMargin,
-                    right: defaultMargin
-                  ),
+                      top: kDefaultMargin,
+                      bottom: kDefaultMargin,
+                      right: defaultMargin),
                   child: Image.asset(
                     "assets/icons/icon_chat.png",
                     width: 20,
@@ -82,10 +85,9 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                    top: kDefaultMargin,
-                    bottom: kDefaultMargin,
-                    left: defaultMargin
-                  ),
+                      top: kDefaultMargin,
+                      bottom: kDefaultMargin,
+                      left: defaultMargin),
                   child: Image.asset(
                     "assets/icons/icon_fav.png",
                     width: 20,
@@ -97,9 +99,7 @@ class _MainPageState extends State<MainPage> {
               BottomNavigationBarItem(
                 icon: Container(
                   margin: const EdgeInsets.only(
-                    top: kDefaultMargin,
-                    bottom: kDefaultMargin
-                  ),
+                      top: kDefaultMargin, bottom: kDefaultMargin),
                   child: Image.asset(
                     "assets/icons/icon_profile.png",
                     width: 20,
@@ -117,19 +117,19 @@ class _MainPageState extends State<MainPage> {
     Widget? body() {
       switch (currentIndex) {
         case 0:
-          return HomePage();
+          return const HomePageWarehouse();
           break;
         case 1:
           return const ChatPage();
           break;
         case 2:
-          return const WishlistPage();
+          return const QrPageWarehouse();
           break;
         case 3:
-          return ProfilePage();
+          return const ProfilePageWarehouse();
           break;
         default:
-          return HomePage();
+          return const HomePageWarehouse();
       }
     }
 
