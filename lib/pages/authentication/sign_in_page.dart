@@ -22,6 +22,10 @@ class _SignInPageState extends State<SignInPage> {
       TextEditingController(text: '');
   bool isLoading = false;
 
+  final isWarehouse = 'WAREHOUSE';
+  final isTechnician = 'TECHNICIAN';
+  final isUser = 'USER';
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
@@ -33,8 +37,23 @@ class _SignInPageState extends State<SignInPage> {
       if (await authProvider.login(
         password: _passwordController.text,
         email: _emailController.text,
+        roles: isWarehouse,
       )) {
-        Navigator.pushNamed(context, '/main');
+        Navigator.pushNamed(context, '/warehouse/homepage');
+      }
+      if (await authProvider.login(
+        password: _passwordController.text,
+        email: _emailController.text,
+        roles: isTechnician,
+      )) {
+        Navigator.pushNamed(context, '/technition/homepage');
+      }
+      if (await authProvider.login(
+        password: _passwordController.text,
+        email: _emailController.text,
+        roles: isUser,
+      )) {
+        Navigator.pushNamed(context, '/home');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -121,9 +140,7 @@ class _SignInPageState extends State<SignInPage> {
               suffixIcon: Icons.key,
             ),
             textForgotPassword(),
-            isLoading
-                ? CustomLoadingButton(title: 'Loading')
-                : signInButton(),
+            isLoading ? CustomLoadingButton(title: 'Loading') : signInButton(),
           ],
         ),
       );

@@ -41,12 +41,14 @@ class AuthService {
   Future<UserModel> login({
     String? email,
     String? password,
+    String? roles,
   }) async {
     var url = '$baseUrl/login';
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
       'email': email,
       'password': password,
+      'roles' : roles,
     });
 
     var response = await http.post(
