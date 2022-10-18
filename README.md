@@ -1,16 +1,46 @@
-# sedjoek_apps
 
-A new Flutter project.
+# Sedjoek Apps
 
-## Getting Started
+Aplikasi sewa AC rumahan pertama di Indonesia yang berbasis Android dan IOS
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Full REST API
+- Full Responsive Android IOS
+- Midtrans Payment
+- Firebase Push Notification
+- QRIS
+- Signature Apps
+- Reminder Notification
+- PDF Generator Invoice
+- Live Tracker
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Authors
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [@kodenatan17](https://www.github.com/kodenatan17)
+## Installation
+
+Flutter Clean
+
+```bash
+  flutter clean
+```
+
+Flutter Get API
+
+```bash
+  flutter pub get
+```
+
+Setting your own Firebase
+
+```bash
+  firebase login
+  (youremail@email.com)
+```
+
+Run Flutter
+
+```bash
+  flutter run
+```
